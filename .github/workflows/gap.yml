@@ -33,5 +33,5 @@ jobs:
         uses: gap-actions/run-pkg-tests@v3
         with:
           GAP_TESTFILE: "tst/testall.g"
-      - uses: gap-actions/process-coverage@v2
+      - uses: gap-actions/process-coverage@v3
       - uses: codecov/codecov-action@v5
