@@ -36,7 +36,7 @@ See the `LICENSE` file for more details.
 
 ## Installation
 
-This package requires [GAP][] version 4.11.0 or higher.  The most
+This package requires [GAP][] version 4.12.0 or higher.  The most
 up-to-date version of GAP, and instructions on how to install it, can be
 obtained from the [main GAP webpage](https://www.gap-system.org). This
 package has no further dependencies!

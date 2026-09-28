@@ -91,8 +91,8 @@ function(g)
     Append(result, StringFormatted("\"{}\" ", GraphvizName(g)));
   fi;
 
-  Append(result, StringFormatted("with {} ", GV_Pluralize(nodes, "node")));
-  Append(result, StringFormatted("and {}>", GV_Pluralize(edges, "edge")));
+  Append(result, StringFormatted("with {} ", Pluralize(nodes, "node")));
+  Append(result, StringFormatted("and {}>", Pluralize(edges, "edge")));
   # TODO add more info like that about number of subgraphs + contexts
 
   return result;

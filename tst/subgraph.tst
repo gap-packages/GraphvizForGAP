@@ -35,16 +35,9 @@ gap> GraphvizAddSubgraph(g);
 gap> g := GraphvizGraph();;
 gap> GraphvizAddContext(g);
 <graphviz context "no_name_1" with 0 nodes and 0 edges>
-#@if CompareVersionNumbers(GAPInfo.Version, "4.12")
 gap> GraphvizAddContext(g, "no_name_1");
 Error, the 1st argument (a graphviz (di)graph/context) already has a context w\
 ith name "no_name_1"
-#@else
-gap> GraphvizAddContext(g, "no_name_1");
-Error, the 1st argument (a graphviz (di)graph/context) already has a context w\
-ith nam\
-e "no_name_1"
-#@fi
 
 # Test no-name constructor graphs' names increment
 gap> g := GraphvizGraph();;
@@ -89,32 +82,26 @@ rec( n := <graphviz node "n"> )
 gap> g := GraphvizGraph("r");;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddNode(g, "n");;
-#@if CompareVersionNumbers(GAPInfo.Version, "4.12")
 gap> GraphvizAddNode(s, "n");
 Error, the 2nd argument (node) has name "n" but there is already a node with t\
 his name in the 1st argument (a graphviz (di)graph / context) named "a"
-#@fi
 
 # Test adding a node to a graph which is already in child fails (by name)
 gap> g := GraphvizGraph();;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddNode(s, "n");;
-#@if CompareVersionNumbers(GAPInfo.Version, "4.12")
 gap> GraphvizAddNode(g, "n");
 Error, the 2nd argument (node) has name "n" but there is already a node with t\
 his name in the 1st argument (a graphviz (di)graph / context) named ""
-#@fi
 
 # Test adding a node to a graph which is already in sibling fails (by name)
 gap> g := GraphvizGraph();;
 gap> s1 := GraphvizAddSubgraph(g, "a");;
 gap> s2 := GraphvizAddSubgraph(g, "b");;
 gap> GraphvizAddNode(s1, "n");;
-#@if CompareVersionNumbers(GAPInfo.Version, "4.12")
 gap> GraphvizAddNode(s2, "n");
 Error, the 2nd argument (node) has name "n" but there is already a node with t\
 his name in the 1st argument (a graphviz (di)graph / context) named "b"
-#@fi
 
 # Test adding edges to subgraphs
 gap> g := GraphvizGraph();;
@@ -274,16 +261,9 @@ edge [label=testing123] node[color=blue] edge[color=blue] \n\n}\n"
 # Test adding subgraphs with the same name
 gap> g := GraphvizDigraph();;
 gap> s1 := GraphvizAddSubgraph(g, "a");;
-#@if CompareVersionNumbers(GAPInfo.Version, "4.12")
 gap> s2 := GraphvizAddSubgraph(g, "a");
 Error, the 1st argument (a graphviz (di)graph/context) already has a subgraph \
 with name "a"
-#@else
-gap> s2 := GraphvizAddSubgraph(g, "a");
-Error, the 1st argument (a graphviz (di)graph/context) already has a subgraph \
-with na\
-me "a"
-#@fi
 
 # Test getting subgraphs by name
 gap> g := GraphvizDigraph();;
@@ -510,16 +490,9 @@ gap> GV_GetParent(ctx2);
 # Test adding contexts with the same name
 gap> g := GraphvizDigraph();;
 gap> s1 := GraphvizAddContext(g, "a");;
-#@if CompareVersionNumbers(GAPInfo.Version, "4.12")
 gap> s2 := GraphvizAddContext(g, "a");
 Error, the 1st argument (a graphviz (di)graph/context) already has a context w\
 ith name "a"
-#@else
-gap> s2 := GraphvizAddContext(g, "a");
-Error, the 1st argument (a graphviz (di)graph/context) already has a context w\
-ith nam\
-e "a"
-#@fi
 
 # Test adding contexts and subgraphs (different name spaces)
 gap> g := GraphvizDigraph();;

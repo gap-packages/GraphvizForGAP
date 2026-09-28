@@ -32,8 +32,6 @@ DeclareOperation("GV_StringifyGraph",
 
 DeclareOperation("GV_FindNode", [IsGraphvizGraphDigraphOrContext, IsObject]);
 
-DeclareOperation("GV_Pluralize", [IsInt, IsString]);
-
 DeclareOperation("GV_Node", [IsGraphvizGraphDigraphOrContext, IsString]);
 DeclareOperation("GV_Edge",
 [IsGraphvizGraphDigraphOrContext, IsGraphvizNode, IsGraphvizNode]);
