@@ -28,10 +28,10 @@ See the `LICENSE` file for more details.
 
 ## Links
 
-- GitHub: [https://github.com/digraphs/graphviz](https://github.com/digraphs/graphviz)
+- GitHub: [https://github.com/gap-packages/GraphvizForGap](https://github.com/gap-packages/GraphvizForGap)
 - Documentation: TODO
 - Changelog: TODO
-- Issue Tracker: [https://github.com/digraphs/graphviz/issues](https://github.com/digraphs/graphviz/issues)
+- Issue Tracker: [https://github.com/gap-packages/GraphvizForGap/issues](https://github.com/gap-packages/GraphvizForGap/issues)
 - Download: TODO
 
 ## Installation
@@ -69,7 +69,7 @@ Create a graph object:
     by James D. Mitchell (https://jdbm.me) and
        Matthew Pancer (mp322@st-andrews.ac.uk).
     Homepage: https://digraphs.github.io/graphviz
-    Report issues at https://github.com/digraphs/graphviz/issues
+    Report issues at https://github.com/gap-packages/GraphvizForGap/issues
     ───────────────────────────────────────────────────────────────────────────────────
     true
     gap> dot := GraphvizDigraph("The Round Table");
@@ -111,12 +111,12 @@ Render and view the result:
 
     gap> Splash(dot);
 
-![The Round Table](https://raw.github.com/digraphs/graphviz/main/docs/png/The_Round_Table.png)
+![The Round Table](https://raw.github.com/gap-packages/GraphvizForGap/main/docs/png/The_Round_Table.png)
 
 ## Issues
 
 For questions, remarks, suggestions, and issues please use the
-[issue tracker](https://github.com/digraphs/graphviz/issues).
+[issue tracker](https://github.com/gap-packages/GraphvizForGap/issues).
 
 [DOT]: https://www.graphviz.org/doc/info/lang.html
 [GAP]: https://www.gap-system.org
