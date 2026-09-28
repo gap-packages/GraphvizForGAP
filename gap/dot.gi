@@ -400,7 +400,20 @@ end);
 InstallMethod(GraphvizAddEdge,
 "for a graphviz (di)graph or context and two objects",
 [IsGraphvizGraphDigraphOrContext, IsObject, IsObject],
-{gv, o1, o2} -> GraphvizAddEdge(gv, String(o1), String(o2)));
+function(gv, head, tail)
+  local head_name, tail_name;
+  if IsGraphvizNode(head) then
+    head_name := GraphvizName(head);
+  else
+    head_name := String(head);
+  fi;
+  if IsGraphvizNode(tail) then
+    tail_name := GraphvizName(tail);
+  else
+    tail_name := String(tail);
+  fi;
+  return GraphvizAddEdge(gv, head_name, tail_name);
+end);
 
 #############################################################################
 # GraphvizAddSubgraph

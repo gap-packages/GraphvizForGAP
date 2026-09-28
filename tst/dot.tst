@@ -216,5 +216,21 @@ graph xxx {
 	1 [label=<<>>, "probably not ok"=1]
 }
 
+# Issue 68
+gap> g := GraphvizDigraph("unexpected");
+<graphviz digraph "unexpected" with 0 nodes and 0 edges>
+gap> a := GraphvizAddNode(g, "a");
+<graphviz node "a">
+gap> e := GraphvizAddEdge(g, a, "b");
+<graphviz edge (a, b)>
+gap> GraphvizNodes(g); AsString(g);
+rec( a := <graphviz node "a">, b := <graphviz node "b"> )
+"//dot\ndigraph unexpected {\n\ta\n\tb\n\ta -> b\n}\n"
+gap> e := GraphvizAddEdge(g, "b", a);
+<graphviz edge (b, a)>
+gap> GraphvizNodes(g); AsString(g);
+rec( a := <graphviz node "a">, b := <graphviz node "b"> )
+"//dot\ndigraph unexpected {\n\ta\n\tb\n\ta -> b\n\tb -> a\n}\n"
+
 #
 gap> STOP_TEST("graphviz package: dot.tst", 0);
