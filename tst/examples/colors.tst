@@ -14,7 +14,7 @@
 
 #@local g, node
 gap> START_TEST("graphviz package: examples/colors.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #

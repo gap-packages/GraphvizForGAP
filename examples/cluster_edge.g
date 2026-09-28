@@ -11,7 +11,7 @@
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://www.graphviz.org/pdf/dotguide.pdf, Figure 20
 
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 
 g := GraphvizDigraph("G");
 GraphvizSetAttr(g, "compound=true");

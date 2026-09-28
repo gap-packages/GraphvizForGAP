@@ -10,7 +10,7 @@
 
 #@local a, a1, a2, ab, b, c, cd, color, d, e, e1, e2, g, g1, label, n
 gap> START_TEST("graphviz package: edge.tst");
-gap> LoadPackage("graphviz", false);;
+gap> LoadPackage("GraphvizForGAP", false);;
 
 # Test edge constructor
 gap> g := GraphvizGraph();;

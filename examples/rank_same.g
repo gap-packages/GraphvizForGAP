@@ -11,7 +11,7 @@
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://stackoverflow.com/questions/25734244
 
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 g := GraphvizDigraph();
 
 s1 := GraphvizAddSubgraph(g);

@@ -14,7 +14,7 @@
 
 #@local g, s1, s2
 gap> START_TEST("graphviz package: examples/rank_same.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #

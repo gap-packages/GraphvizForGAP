@@ -11,7 +11,7 @@
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://www.graphviz.org/Gallery/gradient/g_c_n.html
 
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 
 g := GraphvizGraph("G");
 GraphvizSetAttr(g,

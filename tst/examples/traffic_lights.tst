@@ -13,7 +13,7 @@
 
 #@local ctx1, ctx2, i, j, pair, t
 gap> START_TEST("graphviz package: examples/traffic_lights.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 gap> t := GraphvizDigraph("TrafficLights");
 <graphviz digraph "TrafficLights" with 0 nodes and 0 edges>

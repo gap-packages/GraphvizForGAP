@@ -12,7 +12,7 @@
 #@local sub1, sub2, ctx1, ctx2
 #@local parent, s, s1, s11, s2, sibling
 gap> START_TEST("graphviz package: subgraph.tst");
-gap> LoadPackage("graphviz", false);;
+gap> LoadPackage("GraphvizForGAP", false);;
 
 # Test creating subgraphs (named)
 gap> g := GraphvizGraph();;

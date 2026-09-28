@@ -13,7 +13,7 @@
 
 #@local u
 gap> START_TEST("graphviz package: examples/unix.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #

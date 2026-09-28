@@ -29,7 +29,7 @@ fi;
 
 XMLEntities := rec();
 
-XMLEntities.GAPGraphviz := PackageEntity("Graphviz");
+XMLEntities.GAPGraphviz := PackageEntity("GraphvizForGAP");
 XMLEntities.PyGraphviz := UrlEntity("graphviz",
                                     "https://pypi.org/project/graphviz/");
 XMLEntities.DOT := UrlEntity("DOT",

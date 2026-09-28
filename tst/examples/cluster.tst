@@ -12,7 +12,7 @@
 
 #@local cluster0, cluster1, graph
 gap> START_TEST("graphviz package: examples/cluster.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 gap> graph := GraphvizDigraph("G");
 <graphviz digraph "G" with 0 nodes and 0 edges>

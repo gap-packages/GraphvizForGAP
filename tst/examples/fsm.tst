@@ -13,7 +13,7 @@
 
 #@local f, nodes, terminals
 gap> START_TEST("graphviz package: examples/fsm.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #

@@ -10,7 +10,7 @@
 
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://graphviz.org/Gallery/directed/unix.html
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 
 s := GraphvizDigraph("structs");
 GraphvizSetAttr(s, "node [shape=\"plaintext\"]");

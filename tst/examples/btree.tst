@@ -13,7 +13,7 @@
 
 #@local s
 gap> START_TEST("graphviz package: examples/btree.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #

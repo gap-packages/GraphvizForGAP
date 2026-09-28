@@ -13,7 +13,7 @@
 
 #@local graph
 gap> START_TEST("graphviz package: examples/process.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #

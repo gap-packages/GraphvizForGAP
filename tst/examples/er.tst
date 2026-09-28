@@ -13,7 +13,7 @@
 
 #@local context1, context2, e, label, len, start
 gap> START_TEST("graphviz package: examples/er.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #

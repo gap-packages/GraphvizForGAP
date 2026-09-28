@@ -11,7 +11,7 @@
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://graphviz.org/docs/attr-types/color
 
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 g := GraphvizGraph();
 
 node := GraphvizAddNode(g, "RGB: #40e0d0");

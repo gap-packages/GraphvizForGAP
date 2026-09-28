@@ -10,7 +10,7 @@
 
 #@local color, g, label, n, s, shape
 gap> START_TEST("graphviz package: node.tst");
-gap> LoadPackage("graphviz", false);;
+gap> LoadPackage("GraphvizForGAP", false);;
 
 # Test node constructor
 gap> GraphvizAddNode(GraphvizGraph(), "test-node");

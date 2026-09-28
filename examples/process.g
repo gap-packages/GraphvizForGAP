@@ -10,7 +10,7 @@
 
 # https://graphviz.readthedocs.io/en/stable/examples.html
 
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 graph := GraphvizGraph("G");
 GraphvizSetAttr(graph, "engine=\"sfdp\"");
 

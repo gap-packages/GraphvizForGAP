@@ -53,7 +53,7 @@
 #! <URL>https://graphviz.org/Gallery/directed/fsm.html</URL>.
 #!
 #! @BeginLogSession
-#! gap> LoadPackage("graphviz");;
+#! gap> LoadPackage("GraphvizForGAP");;
 #! gap> f := GraphvizDigraph("finite_state_machine");
 #! <graphviz digraph "finite_state_machine" with 0 nodes and 0 edges>
 #! gap> GraphvizSetAttr(f, "rankdir=LR");

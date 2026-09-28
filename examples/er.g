@@ -10,7 +10,7 @@
 
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://graphviz.org/Gallery/undirected/ER.html
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 e := GraphvizGraph("ER");
 GraphvizSetAttr(e, "engine=\"neato\"");
 

@@ -28,11 +28,11 @@ See the `LICENSE` file for more details.
 
 ## Links
 
-- GitHub: [https://github.com/gap-packages/GraphvizForGap](https://github.com/gap-packages/GraphvizForGap)
-- Documentation: TODO
+- GitHub: [https://github.com/gap-packages/GraphvizForGAP](https://github.com/gap-packages/GraphvizForGAP)
+- Documentation: [https://gap-packages.github.io/GraphvizForGAP](https://gap-packages.github.io/GraphvizForGAP)
 - Changelog: TODO
-- Issue Tracker: [https://github.com/gap-packages/GraphvizForGap/issues](https://github.com/gap-packages/GraphvizForGap/issues)
-- Download: TODO
+- Issue Tracker: [https://github.com/gap-packages/GraphvizForGAP/issues](https://github.com/gap-packages/GraphvizForGAP/issues)
+- Download: [https://github.com/gap-packages/GraphvizForGAP/releases](https://github.com/gap-packages/GraphvizForGAP/releases)
 
 ## Installation
 
@@ -44,32 +44,32 @@ package has no further dependencies!
 ### From sources
 
 To get the latest version of the package, download the archive file
-`graphviz-x.x.x.tar.gz` from the [Graphviz package for GAP webpage][].
+`GraphvizForGAP-x.x.x.tar.gz` from the [GitHub releases page](https://github.com/gap-packages/GraphvizForGAP/releases).
 Then, inside the `pkg` subdirectory of your GAP installation, unpack the
-archive `graphviz-x.x.x.tar.gz` in your `gap/pkg` directory, using
+archive `GraphvizForGAP-x.x.x.tar.gz` in your `gap/pkg` directory, using
 
-    gunzip graphviz-x.x.x.tar.gz; tar xvf graphviz-x.x.x.tar
+    gunzip GraphvizForGAP-x.x.x.tar.gz; tar xvf GraphvizForGAP-x.x.x.tar
 
-for example.  This will create a subdirectory `graphviz-x.x.x`.
+for example.  This will create a subdirectory `GraphvizForGAP-x.x.x`.
 
 ### Using the [PackageManager][]
 
 Start GAP in the usual way, then type:
 
     LoadPackage("PackageManager");
-    InstallPackage("graphviz");
+    InstallPackage("GraphvizForGAP");
 
 ## Quickstart
 
 Create a graph object:
 
-    gap> LoadPackage("graphviz");
+    gap> LoadPackage("GraphvizForGAP");
     ───────────────────────────────────────────────────────────────────────────────────
-    Loading graphviz 0.0.0 (TODO)
+    Loading GraphvizForGAP 0.0.0 (GAP representations of graphviz objects)
     by James D. Mitchell (https://jdbm.me) and
        Matthew Pancer (mp322@st-andrews.ac.uk).
-    Homepage: https://digraphs.github.io/graphviz
-    Report issues at https://github.com/gap-packages/GraphvizForGap/issues
+    Homepage: https://gap-packages.github.io/GraphvizForGAP/
+    Report issues at https://github.com/gap-packages/GraphvizForGAP/issues
     ───────────────────────────────────────────────────────────────────────────────────
     true
     gap> dot := GraphvizDigraph("The Round Table");
@@ -116,11 +116,10 @@ Render and view the result:
 ## Issues
 
 For questions, remarks, suggestions, and issues please use the
-[issue tracker](https://github.com/gap-packages/GraphvizForGap/issues).
+[issue tracker](https://github.com/gap-packages/GraphvizForGAP/issues).
 
 [DOT]: https://www.graphviz.org/doc/info/lang.html
 [GAP]: https://www.gap-system.org
 [Graphviz]: https://www.graphviz.org
-[Graphviz webpage]: https://digraphs.github.io/Digraphs
 [PackageManager]: https://gap-packages.github.io/PackageManager
 [Python Graphviz]: https://pypi.org/project/graphviz/

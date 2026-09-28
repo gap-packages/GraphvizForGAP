@@ -13,7 +13,7 @@
 
 #@local s
 gap> START_TEST("graphviz package: examples/structs.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 gap> s := GraphvizDigraph("structs");
 <graphviz digraph "structs" with 0 nodes and 0 edges>

@@ -8,7 +8,7 @@
 #############################################################################
 ##
 
-ReadPackage("graphviz", "gap/error.gd");
-ReadPackage("graphviz", "gap/dot.gd");
-ReadPackage("graphviz", "gap/gv.gd");
-ReadPackage("graphviz", "gap/splash.gd");
+ReadPackage("GraphvizForGAP", "gap/error.gd");
+ReadPackage("GraphvizForGAP", "gap/dot.gd");
+ReadPackage("GraphvizForGAP", "gap/gv.gd");
+ReadPackage("GraphvizForGAP", "gap/splash.gd");

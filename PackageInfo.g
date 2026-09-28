@@ -10,7 +10,7 @@
 
 SetPackageInfo(rec(
 
-PackageName := "graphviz",
+PackageName := "GraphvizForGAP",
 Subtitle    := "GAP representations of graphviz objects",
 Version     := "0.0.0",
 Date        := "09/04/2022",  # dd/mm/yyyy format
@@ -45,27 +45,24 @@ Persons := [
 Status := "dev",
 
 SourceRepository := rec(Type := "git",
-                        URL  := "https://github.com/digraphs/graphviz"),
-IssueTrackerURL := "https://github.com/digraphs/graphviz/issues",
-PackageWWWHome  := Concatenation("https://digraphs.github.io/",
-                                 ~.PackageName),
+                        URL  := "https://github.com/gap-packages/GraphvizForGAP"),
+IssueTrackerURL := Concatenation(~.SourceRepository.URL, "/issues"),
+PackageWWWHome  := "https://gap-packages.github.io/GraphvizForGAP/",
 
 PackageInfoURL := Concatenation(~.PackageWWWHome, "PackageInfo.g"),
 README_URL     := Concatenation(~.PackageWWWHome, "README.md"),
-ArchiveURL     := Concatenation(~.PackageWWWHome,
-                                "/",
-                                ~.PackageName,
-                                "-",
-                                ~.Version),
+ArchiveURL     := Concatenation(~.SourceRepository.URL,
+                                "/releases/download/v", ~.Version,
+                                "/", ~.PackageName, "-", ~.Version),
 ArchiveFormats := ".tar.gz",
 
 PackageDoc := rec(
-  BookName  := "graphviz",
+  BookName  := ~.PackageName,
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "TODO",
+  LongTitle := ~.Subtitle,
 ),
 
 Dependencies := rec(
@@ -83,8 +80,8 @@ AutoDoc := rec(
     TitlePage := rec(
         Copyright := """&copyright; by J. D. Mitchell and M. Pancer.<P/>
         &GAPGraphviz; is free software; you can redistribute it and/or modify
-        it, under the terms of the GNU General Public License, version 3 of
-        the License, or (at your option) any later, version.""",
+        it, under the terms of the GNU General Public License, version 2 of
+        the License, or (at your option) any later version.""",
         Abstract := """
         This package facilitates the creation and rendering of graph
         descriptions in the &DOT; language of the &Graphviz; graph drawing

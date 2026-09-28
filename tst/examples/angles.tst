@@ -13,7 +13,7 @@
 
 #@local cluster1, cluster2, g, node, pair, pairs
 gap> START_TEST("graphviz package: examples/angles.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 gap> g := GraphvizDigraph("G");
 <graphviz digraph "G" with 0 nodes and 0 edges>

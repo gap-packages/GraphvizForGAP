@@ -10,7 +10,7 @@
 
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://graphviz.org/Gallery/directed/fsm.html
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 
 f := GraphvizDigraph("finite_state_machine");
 GraphvizSetAttr(f, "rankdir=LR");

@@ -9,7 +9,7 @@
 ##
 
 # https://graphviz.readthedocs.io/en/stable/examples.html
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 graph := GraphvizDigraph("G");
 
 cluster0 := GraphvizAddSubgraph(graph, "cluster_0");

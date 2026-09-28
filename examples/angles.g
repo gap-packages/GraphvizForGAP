@@ -11,7 +11,7 @@
 # https://graphviz.readthedocs.io/en/stable/examples.html
 # https://www.graphviz.org/Gallery/gradient/angles.html
 
-LoadPackage("graphviz");
+LoadPackage("GraphvizForGAP");
 g := GraphvizDigraph("G");
 GraphvizSetAttr(g, "bgcolor", "blue");
 

@@ -10,7 +10,7 @@
 
 #@local a, b, color, e, g, gv, label, n, shape, G, D
 gap> START_TEST("graphviz package: dot.tst");
-gap> LoadPackage("graphviz", false);;
+gap> LoadPackage("GraphvizForGAP", false);;
 
 # Test setting attributes
 gap> g := GraphvizGraph();;

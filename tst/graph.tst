@@ -10,7 +10,7 @@
 
 #@local a, ab, b, c, cd, d, g, n, n1, n2, x
 gap> START_TEST("graphviz package: graph.tst");
-gap> LoadPackage("graphviz", false);;
+gap> LoadPackage("GraphvizForGAP", false);;
 
 # Test graph constructor
 gap> GraphvizGraph();

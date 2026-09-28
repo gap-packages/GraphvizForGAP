@@ -13,7 +13,7 @@
 
 #@local cluster0, cluster1, e, g
 gap> START_TEST("graphviz package: examples/cluster_edge.tst");
-gap> LoadPackage("graphviz");
+gap> LoadPackage("GraphvizForGAP");
 true
 
 #
