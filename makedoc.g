@@ -36,7 +36,7 @@ XMLEntities.DOT := UrlEntity("DOT",
                             "https://www.graphviz.org/doc/info/lang.html");
 XMLEntities.Graphviz := UrlEntity("Graphviz", "https://www.graphviz.org");
 
-AutoDoc("graphviz",
+AutoDoc(
 rec(scaffold := rec(entities := XMLEntities),
     autodoc := true,
     extract_examples := true,
