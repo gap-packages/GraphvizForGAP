@@ -14,7 +14,8 @@ GAP_ARGS = -q --quitonbreak --packagedirs "$(PKGDIR)"
 # list every target annotated with a '## description' comment
 help: ## show this help
 	@echo "The following make targets are available:"
-	@awk -F ':.*## ' '/^[a-zA-Z_-]+:.*## / { printf "  make %-8s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+	@awk -F ':.*## ' '/^[a-zA-Z_-]+:.*## / { t[++n] = $$1; d[n] = $$2; if (length($$1) > w) w = length($$1) } \
+		END { for (i = 1; i <= n; i++) printf "  make %-" w "s  %s\n", t[i], d[i] }' $(MAKEFILE_LIST)
 	@echo
 	@echo "To use a different GAP executable than '$(GAP)', set GAP, e.g.:"
 	@echo "  make check GAP=/path/to/gap"
