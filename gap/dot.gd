@@ -323,14 +323,6 @@ DeclareOperation("GraphvizAttrs", [IsGraphvizObject]);
 #! @Returns the nodes of the provided graphviz graph
 #! as a mapping from node ids to names.
 #! @Description Gets the nodes of the provided graphviz graph.
-# From https://graphviz.org/doc/info/lang.html
-# An ID is one of the following:
-# Any string of alphabetic ([a-zA-Z\200-\377]) characters, underscores ('_') or
-# digits([0-9]), not beginning with a digit;
-# a numeral [-]?(.[0-9]⁺ | [0-9]⁺(.[0-9]*)? );
-# any double-quoted string ("...") possibly containing escaped quotes (\")¹;
-# an HTML string (<...>).
-# TODO specify
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("GraphvizNodes", [IsGraphvizGraphDigraphOrContext]);
@@ -412,6 +404,7 @@ DeclareOperation("GraphvizSetName",
 #! @Returns the modified graph.
 #! @Description Adds a node to the graph.
 #! If a node with the same name is already present the operation fails.
+#! What constitute a valid <A>node</A> name is found at https://graphviz.org/doc/info/lang.html
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("GraphvizAddNode",
