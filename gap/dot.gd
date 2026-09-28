@@ -544,7 +544,7 @@ DeclareOperation("GraphvizRemoveAttr", [IsGraphvizObject, IsObject]);
 #! @Section Outputting
 #! @Arguments graph
 #! @Returns the dot representation of the graphviz object.
-#! @Description TODO
+#! @Description The &DOT; source for the <A>graph</A> argument.
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("AsString", [IsGraphvizGraphDigraphOrContext]);
