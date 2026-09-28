@@ -216,7 +216,7 @@ DeclareCategory("IsGraphvizEdge", IsGraphvizNodeOrEdge);
 #! using the string <C>"--"</C> in the &DOT; language.
 #!
 #! See also:
-#! * <Ref Oper="GraphvizDigraph"/>
+#! * <Ref Oper="GraphvizDigraph" Label="for IsObject"/>
 #! * <Ref Oper="GraphvizSetName"
 #!    Label="for IsGraphvizGraphDigraphOrContext, IsObject"/>
 #! * <Ref Oper="GraphvizName" Label="for IsGraphvizObject"/>
@@ -255,7 +255,7 @@ DeclareOperation("GraphvizGraph", []);
 #! using the string <C>"->"</C> in the &DOT; language.
 #!
 #! See also:
-#! * <Ref Oper="GraphvizGraph"/>
+#! * <Ref Oper="GraphvizGraph" Label="for IsObject"/>
 #! * <Ref Oper="GraphvizSetName"
 #!    Label="for IsGraphvizGraphDigraphOrContext, IsObject"/>
 #! * <Ref Oper="GraphvizName" Label="for IsGraphvizObject"/>
