@@ -256,13 +256,6 @@ InstallMethod(GraphvizSetAttr,
 "for a graphviz node or edge, object, and object",
 [IsGraphvizNodeOrEdge, IsObject, IsObject],
 function(x, name, value)
-
-  if not name in GV_KNOWN_ATTRS then
-    Info(InfoWarning, 1,
-         StringFormatted("unknown attribute \"{}\", the", name),
-         " graphviz object may no longer be valid, it can",
-         " be removed using GraphvizRemoveAttr");
-  fi;
   GraphvizAttrs(x)[String(name)] := String(value);
   return x;
 end);
@@ -272,13 +265,6 @@ InstallMethod(GraphvizSetAttr,
 [IsGraphvizGraphDigraphOrContext, IsObject, IsObject],
 function(x, name, value)
   local attrs, string;
-
-  if not name in GV_KNOWN_ATTRS then
-    Info(InfoWarning, 1,
-         StringFormatted("unknown attribute \"{}\", the", name),
-         " graphviz object may no longer be valid, it can",
-         " be removed using GraphvizRemoveAttr");
-  fi;
 
   name := String(name);
   GV_RemoveGraphAttrIfExists(x, name);

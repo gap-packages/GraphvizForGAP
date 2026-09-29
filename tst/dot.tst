@@ -74,13 +74,11 @@ gap> AsString(g);
 gap> g := GraphvizGraph();;
 gap> n := GraphvizAddNode(g, "n");;
 gap> GraphvizSetAttr(n, "test", "false");
-#I  unknown attribute "test", the graphviz object may no longer be valid, it can be removed using GraphvizRemoveAttr
 <graphviz node "n">
 
 # Test unknown attributes (graph)
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttr(g, "test", "false");
-#I  unknown attribute "test", the graphviz object may no longer be valid, it can be removed using GraphvizRemoveAttr
 <graphviz graph with 0 nodes and 0 edges>
 
 # Test strngifying labels with ">>" inside (node attrs)
@@ -201,7 +199,6 @@ gap> gv := GraphvizGraph("xxx");
 gap> n := GraphvizAddNode(gv, 1);
 <graphviz node "1">
 gap> n := GraphvizSetAttr(n, "probably not ok", 1);
-#I  unknown attribute "probably not ok", the graphviz object may no longer be valid, it can be removed using GraphvizRemoveAttr
 <graphviz node "1">
 gap> Print(AsString(gv));
 //dot
