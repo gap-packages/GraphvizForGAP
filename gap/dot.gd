@@ -403,7 +403,8 @@ DeclareOperation("GraphvizSetName",
 #! @Returns a &GAPGraphviz; node object
 #! @Description Adds a node to the graph.
 #! If a node with the same name is already present the operation fails.
-#! What constitute a valid <A>node</A> name is found at https://graphviz.org/doc/info/lang.html
+#! What constitute a valid <A>node</A> name is found at
+#! https://graphviz.org/doc/info/lang.html
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("GraphvizAddNode",
