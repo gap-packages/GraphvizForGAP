@@ -184,5 +184,15 @@ Error, no node with name "b"
 gap> GraphvizRemoveEdges(g, "b", "a");
 Error, no node with name "b"
 
+# Test adding vertex after edge
+gap> g := GraphvizGraph();;
+gap> e := GraphvizAddEdge(g, "a", "b");;
+gap> n := GraphvizAddNode(g, "a");;
+gap> GraphvizHead(e) = n;
+true
+gap> n := GraphvizAddNode(g, "b");;
+gap> GraphvizTail(e) = n;
+true
+
 #
 gap> STOP_TEST("graphviz package: edge.tst");

@@ -83,16 +83,20 @@ gap> g := GraphvizGraph("r");;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddNode(g, "n");;
 gap> GraphvizAddNode(s, "n");
-Error, the 2nd argument (node) has name "n" but there is already a node with t\
-his name in the 1st argument (a graphviz (di)graph / context) named "a"
+Error, the 2nd argument (node) has name "n" but the 1st argument "a" has a chi\
+ld, parent or sibling (di)graph or context named "r" which also contains a nod\
+e with this name (adding the node would silently modify the context of the exi\
+sting node)
 
 # Test adding a node to a graph which is already in child fails (by name)
 gap> g := GraphvizGraph();;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddNode(s, "n");;
 gap> GraphvizAddNode(g, "n");
-Error, the 2nd argument (node) has name "n" but there is already a node with t\
-his name in the 1st argument (a graphviz (di)graph / context) named ""
+Error, the 2nd argument (node) has name "n" but the 1st argument "" has a chil\
+d, parent or sibling (di)graph or context named "a" which also contains a node\
+ with this name (adding the node would silently modify the context of the exis\
+ting node)
 
 # Test adding a node to a graph which is already in sibling fails (by name)
 gap> g := GraphvizGraph();;
@@ -100,8 +104,10 @@ gap> s1 := GraphvizAddSubgraph(g, "a");;
 gap> s2 := GraphvizAddSubgraph(g, "b");;
 gap> GraphvizAddNode(s1, "n");;
 gap> GraphvizAddNode(s2, "n");
-Error, the 2nd argument (node) has name "n" but there is already a node with t\
-his name in the 1st argument (a graphviz (di)graph / context) named "b"
+Error, the 2nd argument (node) has name "n" but the 1st argument "b" has a chi\
+ld, parent or sibling (di)graph or context named "a" which also contains a nod\
+e with this name (adding the node would silently modify the context of the exi\
+sting node)
 
 # Test adding edges to subgraphs
 gap> g := GraphvizGraph();;

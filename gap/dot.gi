@@ -334,6 +334,12 @@ InstallMethod(GraphvizAddNode, "for a graphviz (di)graph or context and string",
 [IsGraphvizGraphDigraphOrContext, IsString],
 function(x, name)
   local node;
+
+  # Reuse existing node if available
+  if GV_HasNode(x, name) then
+    return GraphvizNodes(x)[name];
+  fi;
+
   node := GV_Node(x, name);
   GV_AddNode(x, node);
   return node;

@@ -331,13 +331,16 @@ function(x, node)
 
   # dont add if already node with the same name
   found := GV_FindGraphWithNode(x, name);
-  if found <> fail then
-    ErrorFormatted("the 2nd argument (node) has name \"{}\"",
-                   " but there is already a node with this name in ",
-                   "the 1st argument (a graphviz (di)graph / context)",
-                   " named \"{}\"",
+  if found <> fail and not IsIdenticalObj(x, found) then
+    ErrorFormatted("the 2nd argument (node) has name \"{}\" ",
+                   "but the 1st argument \"{}\" has a child, ",
+                   "parent or sibling (di)graph or context named \"{}\" ",
+                   "which also contains a node with this name ",
+                   "(adding the node would silently modify the context ",
+                   "of the existing node)",
                    name,
-                   GraphvizName(x));
+                   GraphvizName(x),
+                   GraphvizName(found));
   fi;
 
   nodes[name] := node;

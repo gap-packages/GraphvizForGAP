@@ -8,7 +8,7 @@
 #############################################################################
 ##
 
-#@local color, g, label, n, s, shape
+#@local color, g, label, n, m, s, shape
 gap> START_TEST("graphviz package: node.tst");
 gap> LoadPackage("GraphvizForGAP", false);;
 
@@ -122,6 +122,13 @@ gap> s := GraphvizGraph();;
 gap> GraphvizAddNode(s, n);
 Error, it is not currently possible to add Graphviz node objects directly to G\
 raphviz graphs or digraphs, use the node's name instead
+
+# Adding node twice to same context
+gap> g := GraphvizGraph();;
+gap> n := GraphvizAddNode(g, "n");;
+gap> m := GraphvizAddNode(g, "n");;
+gap> n = m;
+true
 
 #
 gap> STOP_TEST("graphviz package: node.tst", 0);
