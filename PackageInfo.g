@@ -45,7 +45,7 @@ Persons := [
 Status := "dev",
 
 SourceRepository := rec(Type := "git",
-                        URL  := "https://github.com/gap-packages/GraphvizForGAP"),
+                        URL := "https://github.com/gap-packages/GraphvizForGAP"),
 IssueTrackerURL := Concatenation(~.SourceRepository.URL, "/issues"),
 PackageWWWHome  := "https://gap-packages.github.io/GraphvizForGAP/",
 
