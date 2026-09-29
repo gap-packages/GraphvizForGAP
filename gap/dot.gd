@@ -314,7 +314,6 @@ DeclareOperation("GraphvizName", [IsGraphvizObject]);
 #! @Description Gets the attributes of the provided graphviz object.
 #! @BeginExampleSession
 #! @EndExampleSession
-# HERE
 DeclareOperation("GraphvizAttrs", [IsGraphvizObject]);
 
 #! @Section Getters for graphs and digraphs
