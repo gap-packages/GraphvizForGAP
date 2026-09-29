@@ -8,7 +8,7 @@
 #############################################################################
 ##
 
-#@local a, b, color, e, g, gv, label, n, shape, G, D
+#@local a, b, color, e, g, gv, label, n, shape, G, D, innode, f
 gap> START_TEST("graphviz package: dot.tst");
 gap> LoadPackage("GraphvizForGAP", false);;
 
@@ -228,6 +228,16 @@ gap> e := GraphvizAddEdge(g, "b", a);
 gap> GraphvizNodes(g); AsString(g);
 rec( a := <graphviz node "a">, b := <graphviz node "b"> )
 "//dot\ndigraph unexpected {\n\ta\n\tb\n\ta -> b\n\tb -> a\n}\n"
+
+# Issue 75
+gap> f := GraphvizDigraph("blah");
+<graphviz digraph "blah" with 0 nodes and 0 edges>
+gap> GraphvizSetAttr(f, "rankdir", "min");
+<graphviz digraph "blah" with 0 nodes and 0 edges>
+gap> innode := GraphvizAddNode(f, "in");
+<graphviz node "in">
+gap> GraphvizSetAttr(innode, "shape= \"none\"");
+<graphviz node "in">
 
 #
 gap> STOP_TEST("graphviz package: dot.tst", 0);

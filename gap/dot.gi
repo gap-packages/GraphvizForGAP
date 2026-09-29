@@ -256,8 +256,27 @@ InstallMethod(GraphvizSetAttr,
 "for a graphviz node or edge, object, and object",
 [IsGraphvizNodeOrEdge, IsObject, IsObject],
 function(x, name, value)
-  GraphvizAttrs(x)[String(name)] := String(value);
+  name  := String(name);
+  value := String(value);
+  NormalizeWhitespace(name);
+  NormalizeWhitespace(value);
+  GraphvizAttrs(x)[name] := value;
   return x;
+end);
+
+InstallMethod(GraphvizSetAttr,
+"for a graphviz node or edge, and string",
+[IsGraphvizNodeOrEdge, IsString],
+function(x, str)
+  local attr;
+
+  attr := SplitString(str, "=");
+  if Length(attr) <> 2 then
+    ErrorFormatted("expected a string of the form \"attribute_name=value\", ",
+                   "but the input string {} does not contain \"=\"", str);
+  fi;
+
+  return GraphvizSetAttr(x, attr[1], attr[2]);
 end);
 
 InstallMethod(GraphvizSetAttr,
