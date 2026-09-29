@@ -435,7 +435,7 @@ graph -> StringFormatted("subgraph {} {{\n", GraphvizName(graph)));
 
 # @ Return DOT subgraph head line.
 InstallMethod(GV_StringifyContextHead, "for a string", [IsGraphvizContext],
-graph -> StringFormatted("// {} context \n", GraphvizName(graph)));
+graph -> StringFormatted("// {} context \n{{\n", GraphvizName(graph)));
 
 BindGlobal("GV_StringifyNodeName",
 function(node)
@@ -622,15 +622,7 @@ function(graph, is_subgraph)
     fi;
   od;
 
-  if IsGraphvizContext(graph) then
-    # reset attributes following the context
-    if GV_GetParent(graph) <> fail then
-      Append(result, GV_StringifyGraphAttrs(GV_GetParent(graph)));
-    fi;
-    Append(result, "\n");
-  else
-    Append(result, "}\n");
-  fi;
+  Append(result, "}\n");
   return result;
 end);
 

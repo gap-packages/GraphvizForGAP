@@ -75,15 +75,15 @@ gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_8", "LR_5"), "label", "\"S(a)\""
 #
 gap> AsString(f);
 "//dot\ndigraph finite_state_machine {\n\trankdir=LR size=\"8,5\" \n// termina\
-ls context \n\tnode [shape=doublecircle] \n\tLR_0\n\tLR_3\n\tLR_4\n\tLR_8\n\tr\
-ankdir=LR size=\"8,5\" \n\n// nodes context \n\tnode [shape=circle] \n\tLR_2\n\
-\tLR_0 -> LR_2 [label=\"SS(B)\"]\n\tLR_1\n\tLR_0 -> LR_1 [label=\"SS(S)\"]\n\t\
-LR_1 -> LR_3 [label=\"S($end)\"]\n\tLR_6\n\tLR_2 -> LR_6 [label=\"SS(b)\"]\n\t\
-LR_5\n\tLR_2 -> LR_5 [label=\"SS(a)\"]\n\tLR_2 -> LR_4 [label=\"S(A)\"]\n\tLR_\
-7\n\tLR_5 -> LR_7 [label=\"S(b)\"]\n\tLR_5 -> LR_5 [label=\"S(a)\"]\n\tLR_6 ->\
- LR_6 [label=\"S(b)\"]\n\tLR_6 -> LR_5 [label=\"S(a)\"]\n\tLR_7 -> LR_8 [label\
-=\"S(b)\"]\n\tLR_7 -> LR_5 [label=\"S(a)\"]\n\tLR_8 -> LR_6 [label=\"S(b)\"]\n\
-\tLR_8 -> LR_5 [label=\"S(a)\"]\n\trankdir=LR size=\"8,5\" \n\n}\n"
+ls context \n{\n\tnode [shape=doublecircle] \n\tLR_0\n\tLR_3\n\tLR_4\n\tLR_8\n\
+}\n// nodes context \n{\n\tnode [shape=circle] \n\tLR_2\n\tLR_0 -> LR_2 [label\
+=\"SS(B)\"]\n\tLR_1\n\tLR_0 -> LR_1 [label=\"SS(S)\"]\n\tLR_1 -> LR_3 [label=\
+\"S($end)\"]\n\tLR_6\n\tLR_2 -> LR_6 [label=\"SS(b)\"]\n\tLR_5\n\tLR_2 -> LR_5\
+ [label=\"SS(a)\"]\n\tLR_2 -> LR_4 [label=\"S(A)\"]\n\tLR_7\n\tLR_5 -> LR_7 [l\
+abel=\"S(b)\"]\n\tLR_5 -> LR_5 [label=\"S(a)\"]\n\tLR_6 -> LR_6 [label=\"S(b)\
+\"]\n\tLR_6 -> LR_5 [label=\"S(a)\"]\n\tLR_7 -> LR_8 [label=\"S(b)\"]\n\tLR_7 \
+-> LR_5 [label=\"S(a)\"]\n\tLR_8 -> LR_6 [label=\"S(b)\"]\n\tLR_8 -> LR_5 [lab\
+el=\"S(a)\"]\n}\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/fsm.tst");

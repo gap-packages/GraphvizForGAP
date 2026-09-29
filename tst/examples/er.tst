@@ -115,20 +115,16 @@ gap> AsString(e);
 #I  invalid node name S-C using "S-C" instead
 #I  invalid node name S-C using "S-C" instead
 "//dot\ngraph ER {\n\tengine=\"neato\" label=\"Entity Relation Diagram\ndrawn \
-by NEATO\" fontsize=\"20\" \n// context_start context \n\tnode[shape=\"box\"] \
-\n\tcourse\n\tinstitute\n\tstudent\n\tengine=\"neato\" label=\"Entity Relation\
- Diagram\ndrawn by NEATO\" fontsize=\"20\" \n\n// context1 context \n\tnode [s\
-hape=\"ellipse\"] \n\tname0 [label=name]\n\tname1 [label=name]\n\tname2 [label\
-=name]\n\tcode\n\tgrade\n\tnumber\n\tengine=\"neato\" label=\"Entity Relation \
-Diagram\ndrawn by NEATO\" fontsize=\"20\" \n\n// context2 context \n\tnode [sh\
-ape=\"diamond\", style=\"filled\", color=\"lightgrey\"] \n\t\"C-I\"\n\t\"S-C\"\
-\n\t\"S-I\"\n\tengine=\"neato\" label=\"Entity Relation Diagram\ndrawn by NEAT\
-O\" fontsize=\"20\" \n\n\tname0 -- course\n\tcode -- course\n\t\"C-I\" -- cour\
-se [label=n, len=1.00]\n\tinstitute -- \"C-I\" [label=1, len=1.00]\n\tname1 --\
- institute\n\t\"S-I\" -- institute [label=1, len=1.00]\n\tstudent -- \"S-I\" [\
-label=n, len=1.00]\n\tgrade -- student\n\tname2 -- student\n\tnumber -- studen\
-t\n\t\"S-C\" -- student [label=m, len=1.00]\n\tcourse -- \"S-C\" [label=n, len\
-=1.00]\n}\n"
+by NEATO\" fontsize=\"20\" \n// context_start context \n{\n\tnode[shape=\"box\
+\"] \n\tcourse\n\tinstitute\n\tstudent\n}\n// context1 context \n{\n\tnode [sh\
+ape=\"ellipse\"] \n\tname0 [label=name]\n\tname1 [label=name]\n\tname2 [label=\
+name]\n\tcode\n\tgrade\n\tnumber\n}\n// context2 context \n{\n\tnode [shape=\"\
+diamond\", style=\"filled\", color=\"lightgrey\"] \n\t\"C-I\"\n\t\"S-C\"\n\t\"\
+S-I\"\n}\n\tname0 -- course\n\tcode -- course\n\t\"C-I\" -- course [label=n, l\
+en=1.00]\n\tinstitute -- \"C-I\" [label=1, len=1.00]\n\tname1 -- institute\n\t\
+\"S-I\" -- institute [label=1, len=1.00]\n\tstudent -- \"S-I\" [label=n, len=1\
+.00]\n\tgrade -- student\n\tname2 -- student\n\tnumber -- student\n\t\"S-C\" -\
+- student [label=m, len=1.00]\n\tcourse -- \"S-C\" [label=n, len=1.00]\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/er.tst");
