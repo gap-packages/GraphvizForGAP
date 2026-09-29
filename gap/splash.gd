@@ -16,14 +16,22 @@
 #! @Arguments x[, opts]
 #! @Returns Nothing.
 #! @Description
-#! This function attempts to convert the string <A>str</A> into a pdf
+#! This function attempts to convert <A>x</A> into a pdf
 #! document and open this document, i.e. to splash it all over your monitor.<P/>
 #!
-#! The argument <A>x</A> must be one of: TODO
+#! The argument <A>x</A> must be one of:
+#! <List>
+#!   <Item>
+#!     a &GAPGraphviz; graph or digraph, which is converted into a string
+#!     using <Ref Oper="AsString" Label="for IsGraphvizGraphDigraphOrContext"/>;
+#!   </Item>
+#!   <Item>
+#!     a string containing a valid <C>dot</C> or &LaTeX; document.
+#!   </Item>
+#! </List>
 #!
-#! must correspond to a valid <C>dot</C> or
-#! <C>LaTeX</C> text file and you must have have <C>GraphViz</C> and
-#! <C>pdflatex</C> installed on your computer.  For details about these file
+#! Rendering requires <C>GraphViz</C> or <C>pdflatex</C> respectively to be
+#! installed on your computer. For details about these file
 #! formats, see <URL>https://www.latex-project.org</URL> and
 #! <URL>https://www.graphviz.org</URL>.<P/>
 #!
@@ -93,7 +101,8 @@
 #! This function was originally written by Attila Egri-Nagy and Manuel Delgado,
 #! the present version incorporates some minor changes.<P/>
 #! @BeginLogSession
-#! gap> TODO
-#! gap> Splash();
+#! gap> gv := GraphvizDigraph("G");;
+#! gap> GraphvizAddEdge(gv, "hello", "world");;
+#! gap> Splash(gv);
 #! @EndLogSession
 DeclareGlobalFunction("Splash");
