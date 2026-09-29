@@ -76,47 +76,33 @@
 #! <graphviz context "nodes" with 0 nodes and 0 edges>
 #! gap> GraphvizSetAttr(nodes, "node [shape=circle]");
 #! <graphviz context "nodes" with 0 nodes and 0 edges>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_0", "LR_2"),
-#! > "label", "\"SS(B)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_0", "LR_2"), "label", "\"SS(B)\"");
 #! <graphviz edge (LR_0, LR_2)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_0", "LR_1"),
-#! > "label", "\"SS(S)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_0", "LR_1"), "label", "\"SS(S)\"");
 #! <graphviz edge (LR_0, LR_1)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_1", "LR_3"),
-#! > "label", "\"S($end)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_1", "LR_3"), "label", "\"S($end)\"");
 #! <graphviz edge (LR_1, LR_3)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_2", "LR_6"),
-#! > "label", "\"SS(b)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_2", "LR_6"), "label", "\"SS(b)\"");
 #! <graphviz edge (LR_2, LR_6)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_2", "LR_5"),
-#! > "label", "\"SS(a)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_2", "LR_5"), "label", "\"SS(a)\"");
 #! <graphviz edge (LR_2, LR_5)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_2", "LR_4"),
-#! > "label", "\"S(A)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_2", "LR_4"), "label", "\"S(A)\"");
 #! <graphviz edge (LR_2, LR_4)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_5", "LR_7"),
-#! > "label", "\"S(b)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_5", "LR_7"), "label", "\"S(b)\"");
 #! <graphviz edge (LR_5, LR_7)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_5", "LR_5"),
-#! > "label", "\"S(a)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_5", "LR_5"), "label", "\"S(a)\"");
 #! <graphviz edge (LR_5, LR_5)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_6", "LR_6"),
-#! > "label", "\"S(b)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_6", "LR_6"), "label", "\"S(b)\"");
 #! <graphviz edge (LR_6, LR_6)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_6", "LR_5"),
-#! > "label", "\"S(a)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_6", "LR_5"), "label", "\"S(a)\"");
 #! <graphviz edge (LR_6, LR_5)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_7", "LR_8"),
-#! > "label", "\"S(b)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_7", "LR_8"), "label", "\"S(b)\"");
 #! <graphviz edge (LR_7, LR_8)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_7", "LR_5"),
-#! > "label", "\"S(a)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_7", "LR_5"), "label", "\"S(a)\"");
 #! <graphviz edge (LR_7, LR_5)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_8", "LR_6"),
-#! > "label", "\"S(b)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_8", "LR_6"), "label", "\"S(b)\"");
 #! <graphviz edge (LR_8, LR_6)>
-#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_8", "LR_5"),
-#! > "label", "\"S(a)\"");
+#! gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_8", "LR_5"), "label", "\"S(a)\"");
 #! <graphviz edge (LR_8, LR_5)>
 #! gap> Print(AsString(f), "\n");
 #! //dot
