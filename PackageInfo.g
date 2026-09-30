@@ -69,9 +69,6 @@ Persons := [
     GithubUsername := "fingolfin",
     IsAuthor       := false,
     IsMaintainer   := false,
-    PostalAddress  := Concatenation("Fachbereich Mathematik, RPTU Kaiserslautern-Landau,",
-                      " Gottlieb-Daimler-Straße 48, 67663 Kaiserslautern, Germany"),
-    Place          := "Kaiserslautern, Germany",
     Institution    := "RPTU Kaiserslautern-Landau"),
   rec(
     FirstNames     := "Lukas",
