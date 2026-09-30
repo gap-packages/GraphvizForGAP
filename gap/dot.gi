@@ -338,7 +338,7 @@ function(x, name)
                      GraphvizName(x),
                      name);
     fi;
-    return GraphvizNodes(x)[name];
+    return node;
   fi;
 
   node := GV_Node(x, name);
