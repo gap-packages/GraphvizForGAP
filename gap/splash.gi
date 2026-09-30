@@ -35,7 +35,7 @@ end);
 
 InstallGlobalFunction(Splash,
 function(arg...)
-  local file, str, opt, path, dir, tdir, viewer, type, inn, filetype, out,
+  local file, str, opt, path, subdir, dir, tdir, viewer, type, inn, filetype, out,
   engine, i;
 
   if IsEmpty(arg) then
@@ -67,17 +67,19 @@ function(arg...)
   if IsBound(opt.path) then
     path := opt.path;
   fi;
+  if not EndsWith(path, "/") then
+    path := Concatenation(path, "/");
+  fi;
 
-  if IsBound(opt.directory) then
-    if not opt.directory in DirectoryContents(path) then
-      GV_RunProgram(DirectoryCurrent(), "mkdir", ["-p", Concatenation(path, opt.directory)]);
+  if IsBound(opt.directory) or IsBound(opt.path) then
+    subdir := "tmp.viz";
+    if IsBound(opt.directory) then
+      subdir := opt.directory;
     fi;
-    dir := Concatenation(path, opt.directory, "/");
-  elif IsBound(opt.path) then
-    if not "tmp.viz" in DirectoryContents(path) then
-      tdir := Directory(Concatenation(path, "/", "tmp.viz"));
-      dir := Filename(tdir, "");
+    if not subdir in DirectoryContents(path) then
+      GV_RunProgram(DirectoryCurrent(), "mkdir", ["-p", Concatenation(path, subdir)]);
     fi;
+    dir := Concatenation(path, subdir, "/");
   else
     tdir := DirectoryTemporary();
     dir := Filename(tdir, "");
