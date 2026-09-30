@@ -54,6 +54,12 @@ true
 gap> Splash("//dot\ndigraph {}", rec(path := "/no/such/dir", viewer := "true"));
 Error, the directory "/no/such/dir/" does not exist
 
+# InfoGraphviz reports the programs run
+gap> SetInfoLevel(InfoGraphviz, 2);
+gap> GV_RunProgram(Directory("/"), "true", ["a", "b c"]);
+#I  running true [ "a", "b c" ] in /
+gap> SetInfoLevel(InfoGraphviz, 0);
+
 # Failures of the layout engine are reported
 gap> Splash("//dot\ndigraph {", rec(viewer := "true"));
 Error, the program "dot" failed with exit status 1

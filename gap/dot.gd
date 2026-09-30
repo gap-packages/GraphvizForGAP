@@ -603,3 +603,14 @@ DeclareOperation("\[\]\:\=", [IsGraphvizEdge, IsObject, IsObject]);
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("\[\]", [IsGraphvizGraphDigraphOrContext, IsObject]);
+
+#! @Section Debugging
+#! @Description
+#!   The info class of this package; its info level is 0 by default.
+#!   At level 1, <Ref Func="Splash"/> reports the files it writes and the
+#!   viewer it uses. At level 2, it reports each program it runs with its
+#!   arguments. At level 3, it reports where it found each program, and
+#!   <Ref Oper="GraphvizAddEdge"
+#!        Label="for IsGraphvizGraphDigraphOrContext, IsObject, IsObject"/>
+#!   reports the nodes it adds.
+DeclareInfoClass("InfoGraphviz");

@@ -404,12 +404,14 @@ function(x, head, tail)
 
   head_node := GV_FindNode(x, head);
   if head_node = fail then
+    Info(InfoGraphviz, 3, "adding node \"", head, "\" for an edge");
     head_node := GV_Node(x, head);
     GV_AddNode(x, head_node);
   fi;
 
   tail_node := GV_FindNode(x, tail);
   if tail_node = fail then
+    Info(InfoGraphviz, 3, "adding node \"", tail, "\" for an edge");
     tail_node := GV_Node(x, tail);
     GV_AddNode(x, tail_node);
   fi;

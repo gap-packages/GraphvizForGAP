@@ -28,6 +28,13 @@ gap> GraphvizHead(e);
 gap> GraphvizTail(e);
 <graphviz node "b">
 
+# Test InfoGraphviz reports nodes added by an edge
+gap> SetInfoLevel(InfoGraphviz, 3);
+gap> GraphvizAddEdge(g, "a", "c");
+#I  adding node "c" for an edge
+<graphviz edge (a, c)>
+gap> SetInfoLevel(InfoGraphviz, 0);
+
 # Test filtering edges by names (digraph)
 gap> g := GraphvizDigraph();;
 gap> a := GraphvizAddNode(g, "a");;

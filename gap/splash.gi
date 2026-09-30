@@ -22,10 +22,12 @@ BindGlobal("GV_RunProgram",
 function(dir, prog, args)
   local path, status;
 
+  Info(InfoGraphviz, 2, "running ", prog, " ", args, " in ", Filename(dir, ""));
   path := Filename(DirectoriesSystemPrograms(), prog);
   if path = fail then
     ErrorNoReturn("the program \"", prog, "\" is not available");
   fi;
+  Info(InfoGraphviz, 3, "found ", prog, " at ", path);
 
   status := Process(dir, path, InputTextNone(), OutputTextNone(), args);
   if status <> 0 then
@@ -145,6 +147,8 @@ function(arg...)
     fi;
   fi;
 
+  Info(InfoGraphviz, 1, "Splash: rendering ", inn, " to ", out,
+       " and opening it with ", viewer);
   FileString(inn, str);
   if type = "latex" then
     GV_RunProgram(Directory(dir), "pdflatex", [file]);
