@@ -50,6 +50,10 @@ gap> Splash("//dot\ndigraph {}", rec(path := path, directory := "f", viewer := "
 gap> IsReadableFile(Concatenation(path, "/f/vizpicture.pdf"));
 true
 
+# The option "path" must be an existing directory
+gap> Splash("//dot\ndigraph {}", rec(path := "/no/such/dir", viewer := "true"));
+Error, the directory "/no/such/dir/" does not exist
+
 # Failures of the layout engine are reported
 gap> Splash("//dot\ndigraph {", rec(viewer := "true"));
 Error, the program "dot" failed with exit status 1

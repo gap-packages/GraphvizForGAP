@@ -72,6 +72,9 @@ function(arg...)
   fi;
 
   if IsBound(opt.directory) or IsBound(opt.path) then
+    if not IsDirectoryPath(path) then
+      ErrorNoReturn("the directory \"", path, "\" does not exist");
+    fi;
     subdir := "tmp.viz";
     if IsBound(opt.directory) then
       subdir := opt.directory;
