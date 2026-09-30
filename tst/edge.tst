@@ -104,6 +104,10 @@ gap> e2 := GraphvizAddEdge(g, c, a2);;
 Error, The 2nd argument (head) named "c" does not belong to the root digraph c\
 ontaining the 1st argument named "" (adding the edge would silently change the\
  enclosing context of "c")
+gap> e2 := GraphvizAddEdge(g1, c, a);;
+Error, The 3rd argument (tail) named "a" does not belong to the root digraph c\
+ontaining the 1st argument named "" (adding the edge would silently change the\
+ enclosing context of "a")
 
 # Test adding an edge reuses a node automatically
 gap> g := GraphvizGraph();;
