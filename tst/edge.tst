@@ -30,9 +30,10 @@ gap> GraphvizTail(e);
 
 # Test InfoGraphviz reports nodes added by an edge
 gap> SetInfoLevel(InfoGraphviz, 3);
-gap> GraphvizAddEdge(g, "a", "c");
-#I  adding node "c" for an edge
-<graphviz edge (a, c)>
+gap> GraphvizAddEdge(g, "c", "d");
+#I  the head of the edge "c" is not an existing node, adding node "c"
+#I  the tail of the edge "d" is not an existing node, adding node "d"
+<graphviz edge (c, d)>
 gap> SetInfoLevel(InfoGraphviz, 0);
 
 # Test filtering edges by names (digraph)
