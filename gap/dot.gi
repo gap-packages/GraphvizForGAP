@@ -322,7 +322,22 @@ function(x, name)
   local node;
 
   # Reuse existing node if available
-  if GV_HasNode(x, name) then
+  node := GV_FindNode(x, name);
+  if node <> fail then
+    if not IsIdenticalObj(GV_GetParent(node), x) then
+      ErrorFormatted("The 2nd argument \"{}\" is the name of a node in a ",
+                     "(di)graph or context named \"{}\" which is an ",
+                     "ancestor, sibling or descendant of the 1st argument ",
+                     "(a graphviz (di)graph / context) named \"{}\" (",
+                     "adding the node \"{}\" to the 1st argument would ",
+                     "silently change the enclosing context of \"{}\")",
+                     name,
+                     GraphvizName(GV_GetParent(node)),
+                     GraphvizName(x),
+                     name,
+                     GraphvizName(x),
+                     name);
+    fi;
     return GraphvizNodes(x)[name];
   fi;
 
@@ -352,17 +367,28 @@ InstallMethod(GraphvizAddEdge,
 "for a graphviz (di)graph or context and two graphviz nodes",
 [IsGraphvizGraphDigraphOrContext, IsGraphvizNode, IsGraphvizNode],
 function(x, head, tail)
-  local edge, head_name, tail_name;
+  local edge, root_x, root_head, root_tail;
 
-  head_name := GraphvizName(head);
-  tail_name := GraphvizName(tail);
-
-  # add the nodes to the graph if not present
-  if GV_FindNode(x, head_name) = fail then
-    GV_AddNode(x, head);
+  root_x := GV_GetRoot(x);
+  root_head := GV_GetRoot(head);
+  root_tail := GV_GetRoot(tail);
+  if not IsIdenticalObj(root_x, root_head) then
+    ErrorFormatted("The 2nd argument (head) named \"{}\" does not belong to ",
+                   "the root digraph containing the 1st argument named \"{}\" ",
+                   "(adding the edge would silently change the enclosing ",
+                   "context of \"{}\")",
+                   GraphvizName(head),
+                   GraphvizName(x),
+                   GraphvizName(head));
   fi;
-  if GV_FindNode(x, tail_name) = fail then
-    GV_AddNode(x, tail);
+  if not IsIdenticalObj(root_x, root_tail) then
+    ErrorFormatted("The 3rd argument (tail) named \"{}\" does not belong to ",
+                   "the root digraph containing the 1st argument named \"{}\" ",
+                   "(adding the edge would silently change the enclosing ",
+                   "context of \"{}\")",
+                   GraphvizName(tail),
+                   GraphvizName(x),
+                   GraphvizName(tail));
   fi;
 
   edge := GV_Edge(x, head, tail);
@@ -379,11 +405,13 @@ function(x, head, tail)
   head_node := GV_FindNode(x, head);
   if head_node = fail then
     head_node := GV_Node(x, head);
+    GV_AddNode(x, head_node);
   fi;
 
   tail_node := GV_FindNode(x, tail);
   if tail_node = fail then
     tail_node := GV_Node(x, tail);
+    GV_AddNode(x, tail_node);
   fi;
 
   return GraphvizAddEdge(x, head_node, tail_node);

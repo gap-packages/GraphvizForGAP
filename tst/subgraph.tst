@@ -83,20 +83,20 @@ gap> g := GraphvizGraph("r");;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddNode(g, "n");;
 gap> GraphvizAddNode(s, "n");
-Error, the 2nd argument (node) has name "n" but the 1st argument "a" has a chi\
-ld, parent or sibling (di)graph or context named "r" which also contains a nod\
-e with this name (adding the node would silently modify the context of the exi\
-sting node)
+Error, The 2nd argument "r" is the name of a node in a (di)graph or context na\
+med "a" which is an ancestor, sibling or descendant of the 1st argument (a gra\
+phviz (di)graph / context) named "n" (adding the node "a" to the 1st argument \
+would silently change the enclosing context of "n")n
 
 # Test adding a node to a graph which is already in child fails (by name)
 gap> g := GraphvizGraph();;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddNode(s, "n");;
 gap> GraphvizAddNode(g, "n");
-Error, the 2nd argument (node) has name "n" but the 1st argument "" has a chil\
-d, parent or sibling (di)graph or context named "a" which also contains a node\
- with this name (adding the node would silently modify the context of the exis\
-ting node)
+Error, The 2nd argument "a" is the name of a node in a (di)graph or context na\
+med "" which is an ancestor, sibling or descendant of the 1st argument (a grap\
+hviz (di)graph / context) named "n" (adding the node "" to the 1st argument wo\
+uld silently change the enclosing context of "n")n
 
 # Test adding a node to a graph which is already in sibling fails (by name)
 gap> g := GraphvizGraph();;
@@ -104,10 +104,10 @@ gap> s1 := GraphvizAddSubgraph(g, "a");;
 gap> s2 := GraphvizAddSubgraph(g, "b");;
 gap> GraphvizAddNode(s1, "n");;
 gap> GraphvizAddNode(s2, "n");
-Error, the 2nd argument (node) has name "n" but the 1st argument "b" has a chi\
-ld, parent or sibling (di)graph or context named "a" which also contains a nod\
-e with this name (adding the node would silently modify the context of the exi\
-sting node)
+Error, The 2nd argument "a" is the name of a node in a (di)graph or context na\
+med "b" which is an ancestor, sibling or descendant of the 1st argument (a gra\
+phviz (di)graph / context) named "n" (adding the node "b" to the 1st argument \
+would silently change the enclosing context of "n")n
 
 # Test adding edges to subgraphs
 gap> g := GraphvizGraph();;

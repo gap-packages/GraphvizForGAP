@@ -43,15 +43,15 @@ DeclareOperation("GV_MapNames", [GV_IsMap]);
 
 DeclareOperation("GV_HasNode", [IsGraphvizGraphDigraphOrContext, IsObject]);
 
-DeclareOperation("GV_GetParent", [IsGraphvizGraphDigraphOrContext]);
+DeclareOperation("GV_GetParent", [IsGraphvizObject]);
 DeclareOperation("GV_GraphTreeSearch",
 [IsGraphvizGraphDigraphOrContext, IsFunction]);
 DeclareOperation("GV_GraphSearchChildren",
 [IsGraphvizGraphDigraphOrContext, IsFunction]);
 DeclareOperation("GV_FindGraphWithNode",
 [IsGraphvizGraphDigraphOrContext, IsString]);
-DeclareOperation("GV_GetRoot", [IsGraphvizGraphDigraphOrContext]);
-DeclareOperation("GV_EnclosingNonContext", [IsGraphvizGraphDigraphOrContext]);
+DeclareOperation("GV_GetRoot", [IsGraphvizObject]);
+DeclareOperation("GV_EnclosingNonContext", [IsGraphvizObject]);
 DeclareOperation("GV_AddNode",
 [IsGraphvizGraphDigraphOrContext, IsGraphvizNode]);
 DeclareOperation("GV_AddEdge",

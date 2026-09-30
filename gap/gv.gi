@@ -48,9 +48,10 @@ function(graph, name)
   fi;
   out := Objectify(GV_NodeType,
                   rec(
-                    Name  := name,
-                    Attrs := GV_Map(),
-                    Idx   := GV_GetCounter(graph)));
+                    Name   := name,
+                    Attrs  := GV_Map(),
+                    Parent := graph,
+                    Idx    := GV_GetCounter(graph)));
   GV_IncCounter(graph);
   return out;
 end);
@@ -62,13 +63,14 @@ function(graph, head, tail)
 
   out := Objectify(GV_EdgeType,
                 rec(
-                  Name  := StringFormatted("({}, {})",
-                                           GraphvizName(head),
-                                           GraphvizName(tail)),
-                  Head  := head,
-                  Tail  := tail,
-                  Attrs := GV_Map(),
-                  Idx   := GV_GetCounter(graph)));
+                  Name   := StringFormatted("({}, {})",
+                                            GraphvizName(head),
+                                            GraphvizName(tail)),
+                  Head   := head,
+                  Tail   := tail,
+                  Attrs  := GV_Map(),
+                  Parent := graph,
+                  Idx    := GV_GetCounter(graph)));
   GV_IncCounter(graph);
   return out;
 end);
@@ -195,8 +197,8 @@ InstallMethod(GV_HasNode,
 {g, name} -> name in GV_MapNames(GraphvizNodes(g)));
 
 InstallMethod(GV_GetParent,
-"for a graphviz graph",
-[IsGraphvizGraphDigraphOrContext], graph -> graph!.Parent);
+"for a graphviz object",
+[IsGraphvizObject], graph -> graph!.Parent);
 
 InstallMethod(GV_GraphTreeSearch,
 "for a graphviz graph and a predicate",
@@ -288,7 +290,7 @@ InstallMethod(GV_FindGraphWithNode,
 
 InstallMethod(GV_GetRoot,
 "for a graphviz graph",
-[IsGraphvizGraphDigraphOrContext],
+[IsGraphvizObject],
 function(graph)
   while GV_GetParent(graph) <> fail do
     graph := GV_GetParent(graph);
@@ -298,7 +300,7 @@ end);
 
 InstallMethod(GV_EnclosingNonContext,
 "for a graphviz object with subobjects",
-[IsGraphvizContext],
+[IsGraphvizObject],
 function(graph)
   local parent;
 
@@ -324,25 +326,9 @@ InstallMethod(GV_AddNode,
 "for a graphviz graph and node",
 [IsGraphvizGraphDigraphOrContext, IsGraphvizNode],
 function(x, node)
-  local name, nodes, found;
-
+  local name, nodes;
   name  := GraphvizName(node);
   nodes := GraphvizNodes(x);
-
-  # dont add if already node with the same name
-  found := GV_FindGraphWithNode(x, name);
-  if found <> fail and not IsIdenticalObj(x, found) then
-    ErrorFormatted("the 2nd argument (node) has name \"{}\" ",
-                   "but the 1st argument \"{}\" has a child, ",
-                   "parent or sibling (di)graph or context named \"{}\" ",
-                   "which also contains a node with this name ",
-                   "(adding the node would silently modify the context ",
-                   "of the existing node)",
-                   name,
-                   GraphvizName(x),
-                   GraphvizName(found));
-  fi;
-
   nodes[name] := node;
   return x;
 end);
@@ -351,33 +337,6 @@ InstallMethod(GV_AddEdge,
 "for a graphviz graph and edge",
 [IsGraphvizGraphDigraphOrContext, IsGraphvizEdge],
 function(x, edge)
-  local head, tail, head_name, tail_name, hg, tg;
-
-  head      := GraphvizHead(edge);
-  tail      := GraphvizTail(edge);
-  head_name := GraphvizName(head);
-  tail_name := GraphvizName(tail);
-  hg        := GV_FindGraphWithNode(x, head_name);
-  tg        := GV_FindGraphWithNode(x, tail_name);
-
-  # make sure the nodes exist / are the same as existing ones
-  if hg <> fail and head <> hg[head_name] then
-    ErrorFormatted("The 2nd argument (edge) has head node named \"{}\"",
-                   " but there is already a node with this name in ",
-                   "the 1st argument (a graphviz (di)graph / context)",
-                   " named \"{}\"",
-                   head_name,
-                   GraphvizName(x));
-  fi;
-  if tg <> fail and tail <> tg[tail_name] then
-    ErrorFormatted("The 2nd argument (edge) has tail node named \"{}\"",
-                   " but there is already a node with this name in ",
-                   "the 1st argument (a graphviz (di)graph / context)",
-                   " named \"{}\"",
-                   head_name,
-                   GraphvizName(x));
-  fi;
-
   Add(x!.Edges, edge);
   return x;
 end);
