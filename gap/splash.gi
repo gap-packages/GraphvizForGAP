@@ -52,7 +52,7 @@ function(arg...)
 
   if IsBound(opt.directory) then
     if not opt.directory in DirectoryContents(path) then
-      Exec(Concatenation("mkdir ", path, opt.directory));
+      Exec(Concatenation("mkdir -p ", path, opt.directory));
     fi;
     dir := Concatenation(path, opt.directory, "/");
   elif IsBound(opt.path) then
