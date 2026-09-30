@@ -69,7 +69,7 @@ Dependencies := rec(
   GAP := ">= 4.12.0",
   NeededOtherPackages := [],
   SuggestedOtherPackages := [],
-  NeededSystemPackages := rec( Ubuntu := [["graphviz"]], Homebrew := [["graphviz"]] ),
+  NeededSystemPackages := rec(Ubuntu := [["graphviz"]], Homebrew := [["graphviz"]]),
   ExternalConditions := [],
 ),
 
