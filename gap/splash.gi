@@ -15,6 +15,24 @@
 BindGlobal("VizViewers",
            ["xpdf", "xdg-open", "open", "evince", "okular", "gv"]);
 
+# Run the system program <prog> in the directory <dir> with the arguments
+# <args>, discarding its standard output. No shell is involved, so the
+# arguments need no quoting.
+BindGlobal("GV_RunProgram",
+function(dir, prog, args)
+  local path, status;
+
+  path := Filename(DirectoriesSystemPrograms(), prog);
+  if path = fail then
+    ErrorNoReturn("the program \"", prog, "\" is not available");
+  fi;
+
+  status := Process(dir, path, InputTextNone(), OutputTextNone(), args);
+  if status <> 0 then
+    ErrorNoReturn("the program \"", prog, "\" failed with exit status ", status);
+  fi;
+end);
+
 InstallGlobalFunction(Splash,
 function(arg...)
   local file, str, opt, path, dir, tdir, viewer, type, inn, filetype, out,
@@ -52,7 +70,7 @@ function(arg...)
 
   if IsBound(opt.directory) then
     if not opt.directory in DirectoryContents(path) then
-      Exec(Concatenation("mkdir -p ", path, opt.directory));
+      GV_RunProgram(DirectoryCurrent(), "mkdir", ["-p", Concatenation(path, opt.directory)]);
     fi;
     dir := Concatenation(path, opt.directory, "/");
   elif IsBound(opt.path) then
@@ -124,10 +142,14 @@ function(arg...)
 
   FileString(inn, str);
   if type = "latex" then
-    Exec(Concatenation("cd ", dir, ";",
-                       "pdflatex ", file, " 2>/dev/null 1>/dev/null"));
+    GV_RunProgram(Directory(dir), "pdflatex", [file]);
   else
-    Exec(Concatenation(engine, " -T", filetype, " ", inn, " -o ", out));
+    GV_RunProgram(DirectoryCurrent(), engine,
+                  [Concatenation("-T", filetype), inn, "-o", out]);
   fi;
-  Exec(Concatenation(viewer, " ", out, " 2>/dev/null 1>/dev/null &"));
+
+  # Only a shell can start the viewer in the background. The viewer and the
+  # file reach it as $0 and $1, so they need no quoting.
+  GV_RunProgram(DirectoryCurrent(), "sh",
+                ["-c", "\"$0\" \"$1\" >/dev/null 2>&1 &", viewer, out]);
 end);

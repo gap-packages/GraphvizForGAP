@@ -9,6 +9,12 @@ excl := [];
 if not IsPackageLoaded("Digraphs", "1.10.0") then
   Add(excl, "digraphs.tst");
 fi;
+if Filename(DirectoriesSystemPrograms(), "dot") = fail then
+  Add(excl, "splash.tst");
+fi;
+if Filename(DirectoriesSystemPrograms(), "pdflatex") = fail then
+  Add(excl, "splash_latex.tst");
+fi;
 
 Print(excl);
 
