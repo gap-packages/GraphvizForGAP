@@ -628,8 +628,6 @@ DeclareGlobalFunction("ErrorIfNotValidColor");
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("\[\]", [IsGraphvizEdge, IsObject]);
-#! @Arguments node, attr
-DeclareOperation("\[\]", [IsGraphvizNode, IsObject]);
 #! @EndGroup
 
 #! @BeginGroup

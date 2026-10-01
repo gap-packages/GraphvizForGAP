@@ -63,16 +63,16 @@ gap> n := GraphvizAddNode(g, 111);
 <graphviz node "111">
 gap> AsString(g);
 "//dot\ngraph  {\n\t111\n}\n"
-gap> n[1];
-fail
-gap> n[1] := 2;
-2
-gap> n[1];
+gap> IsBound(GraphvizAttrs(n).1);
+false
+gap> GraphvizSetAttr(n, 1, 2);
+<graphviz node "111">
+gap> GraphvizAttrs(n).1;
 "2"
 gap> GraphvizRemoveAttr(n, 1);
 <graphviz node "111">
-gap> n[1];
-fail
+gap> IsBound(GraphvizAttrs(n).1);
+false
 
 # Test removing a node with a non-string name
 gap> g := GraphvizGraph();;
@@ -97,8 +97,8 @@ rec( color := "blue", label := "1" )
 # Test getting attributes using the [] syntax
 gap> g := GraphvizGraph();;
 gap> n := GraphvizAddNode(g, "a");;
-gap> n["color"] := "red";;
-gap> n["color"];
+gap> GraphvizSetAttr(n, "color", "red");;
+gap> GraphvizAttrs(n).color;
 "red"
 
 # Test set label (node)
