@@ -159,23 +159,6 @@ x -> x!.Head);
 InstallMethod(\=, "for graphviz nodes",
 [IsGraphvizNode, IsGraphvizNode], IsIdenticalObj);
 
-# Accessing edge attributes
-
-# TODO Remove this, and just use GraphvizAttr(edge) directly?
-InstallMethod(\[\], "for a graphviz edge and a string",
-[IsGraphvizEdge, IsString],
-function(edge, key)
-  if IsBound(GraphvizAttrs(edge).(key)) then
-    return GraphvizAttrs(edge).(key);
-  fi;
-  return fail;
-end);
-
-# TODO Remove this, and just use GraphvizAttr(edge) directly?
-InstallMethod(\[\], "for a graphviz edge and an object",
-[IsGraphvizEdge, IsObject],
-{edge, key} -> edge[String(key)]);
-
 # TODO Remove this, and just use GraphvizAttr(edge) directly?
 InstallMethod(\[\]\:\=, "for a graphviz edge and a string",
 [IsGraphvizEdge, IsString, IsString],

@@ -629,25 +629,13 @@ DeclareOperation("GraphvizSetNodeLabels",
 DeclareGlobalFunction("ErrorIfNotValidColor");
 
 #! @BeginGroup
-#! @GroupTitle Getting attributes
-#! @Arguments edge, attr
-#! @Returns an object
-#! @Description
-#!   Gets the value associated with the attribute <K>attr</K>.
-#! @BeginExampleSession
-#! @EndExampleSession
-DeclareOperation("\[\]", [IsGraphvizEdge, IsObject]);
-#! @EndGroup
-
-#! @BeginGroup
 #! @GroupTitle Setting attributes
-#! @Arguments node, attr
+#! @Arguments edge, attr
 #! @Returns an object
 #! @Description
 #!   Sets the value associated with the attribute <K>attr</K>.
 #! @BeginExampleSession
 #! @EndExampleSession
-#! @Arguments edge, attr
 DeclareOperation("\[\]\:\=", [IsGraphvizEdge, IsObject, IsObject]);
 #! @EndGroup
 
