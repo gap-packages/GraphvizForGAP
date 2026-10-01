@@ -638,7 +638,6 @@ DeclareOperation("\[\]", [IsGraphvizEdge, IsObject]);
 #!   Sets the value associated with the attribute <K>attr</K>.
 #! @BeginExampleSession
 #! @EndExampleSession
-DeclareOperation("\[\]\:\=", [IsGraphvizNode, IsObject, IsObject]);
 #! @Arguments edge, attr
 DeclareOperation("\[\]\:\=", [IsGraphvizEdge, IsObject, IsObject]);
 #! @EndGroup

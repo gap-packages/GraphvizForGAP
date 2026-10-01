@@ -84,13 +84,13 @@ rec(  )
 # Test setting attributes using the []:= syntax
 gap> g := GraphvizGraph();;
 gap> n := GraphvizAddNode(g, "a");;
-gap> n["color"] := "red";;
+gap> GraphvizSetAttr(n, "color", "red");;
 gap> GraphvizAttrs(n);
 rec( color := "red" )
-gap> n["label"] := 1;;
+gap> GraphvizSetAttr(n, "label", 1);;
 gap> GraphvizAttrs(n);
 rec( color := "red", label := "1" )
-gap> n["color"] := "blue";;
+gap> GraphvizSetAttr(n, "color", "blue");;
 gap> GraphvizAttrs(n);
 rec( color := "blue", label := "1" )
 

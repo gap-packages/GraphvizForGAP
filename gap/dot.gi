@@ -159,22 +159,6 @@ x -> x!.Head);
 InstallMethod(\=, "for graphviz nodes",
 [IsGraphvizNode, IsGraphvizNode], IsIdenticalObj);
 
-# Setting node attributes
-
-# TODO Remove this, and just use GraphvizAttrs(node) directly?
-InstallMethod(\[\]\:\=, "for a graphviz node and two strings",
-[IsGraphvizNode, IsString, IsString],
-function(node, key, val)
-  GraphvizAttrs(node).(key) := val;
-end);
-
-# TODO Remove this, and just use SetGraphvizAttr(node, key, val) directly?
-InstallMethod(\[\]\:\=, "for a graphviz node and two strings",
-[IsGraphvizNode, IsObject, IsObject],
-function(node, key, val)
-  node[String(key)] := String(val);
-end);
-
 # Accessing edge attributes
 
 # TODO Remove this, and just use GraphvizAttr(edge) directly?
