@@ -114,7 +114,6 @@ Render and view the result:
 ![The Round Table](https://raw.github.com/gap-packages/GraphvizForGap/main/docs/png/The_Round_Table.png)
 
 ## Structure of the package
-From a discussion in the GAPDays 2026 Fall:
 
 The goal for the structure of this packages is as follows:
 
