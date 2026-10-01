@@ -159,20 +159,6 @@ x -> x!.Head);
 InstallMethod(\=, "for graphviz nodes",
 [IsGraphvizNode, IsGraphvizNode], IsIdenticalObj);
 
-# TODO Remove this, and just use GraphvizAttr(edge) directly?
-InstallMethod(\[\]\:\=, "for a graphviz edge and a string",
-[IsGraphvizEdge, IsString, IsString],
-function(edge, key, val)
-  GraphvizAttrs(edge).(key) := val;
-end);
-
-# TODO Remove this, and use GraphvizSetAttr(edge) instead?
-InstallMethod(\[\]\:\=, "for a graphviz edge and an object",
-[IsGraphvizEdge, IsObject, IsObject],
-function(edge, key, val)
-  edge[String(key)] := String(val);
-end);
-
 InstallMethod(\=, "for graphviz edges",
 [IsGraphvizEdge, IsGraphvizEdge], IsIdenticalObj);
 
@@ -236,8 +222,8 @@ end);
 InstallMethod(GraphvizSetAttr,
 "for a graphviz node or edge, object, and object",
 [IsGraphvizNodeOrEdge, IsObject, IsObject],
-function(x, name, value)
-  GraphvizAttrs(x).(String(name)) := String(value);
+function(x, key, value)
+  GraphvizAttrs(x).(String(key)) := String(value);
   return x;
 end);
 

@@ -561,7 +561,8 @@ DeclareOperation("GraphvizSetAttr", [IsGraphvizObject, IsObject]);
 #! @Returns the value of an attribute or <K>fail</K>.
 #! @Description
 #!    This operation returns the current value of the attribute obtained from
-#!    <C>String(obj)</C>, or <K>fail</K> if there's none.
+#!    <C>String(obj)</C>, or <K>fail</K> if the value of the attribute has not
+#!    been set.
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("GraphvizGetAttr", [IsGraphvizObject, IsObject]);
@@ -627,17 +628,6 @@ DeclareOperation("GraphvizSetNodeLabels",
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareGlobalFunction("ErrorIfNotValidColor");
-
-#! @BeginGroup
-#! @GroupTitle Setting attributes
-#! @Arguments edge, attr
-#! @Returns an object
-#! @Description
-#!   Sets the value associated with the attribute <K>attr</K>.
-#! @BeginExampleSession
-#! @EndExampleSession
-DeclareOperation("\[\]\:\=", [IsGraphvizEdge, IsObject, IsObject]);
-#! @EndGroup
 
 #! @Arguments graph, node_name
 #! @Returns a &GAPGraphviz; node object or fail
