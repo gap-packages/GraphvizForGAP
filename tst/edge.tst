@@ -150,7 +150,7 @@ gap> GraphvizRemoveEdges(g, 1, 1);;
 gap> GraphvizEdges(g);
 [  ]
 
-# Test setting attributes using the []:= syntax
+# Test setting attributes
 gap> g := GraphvizGraph();;
 gap> n := GraphvizAddEdge(g, "a", "b");;
 gap> n["color"] := "red";;
@@ -165,11 +165,11 @@ rec( color := "blue", label := "1" )
 gap> n[1];
 fail
 
-# Test getting attributes using the [] syntax
+# Test getting attributes
 gap> g := GraphvizGraph();;
-gap> n := GraphvizAddEdge(g, "a", "b");;
-gap> n["color"] := "red";;
-gap> n["color"];
+gap> e := GraphvizAddEdge(g, "a", "b");;
+gap> GraphvizSetAttr(e, "color", "red");;
+gap> GraphvizGetAttr(e, "color");
 "red"
 
 # Test set label (edge)

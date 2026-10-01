@@ -310,6 +310,19 @@ function(x, value)
   return x;
 end);
 
+InstallMethod(GraphvizGetAttr, "for a graphviz (di)graph or context and string",
+[IsGraphvizObject, IsString],
+function(x, key)
+  if not IsBound(GraphvizAttrs(x).(key)) then
+    return fail;
+  fi;
+  return GraphvizAttrs(x).(key);
+end);
+
+InstallMethod(GraphvizGetAttr, "for a graphviz (di)graph or context and string",
+[IsGraphvizObject, IsObject],
+{x, key} -> GraphvizGetAttr(x, String(key)));
+
 #############################################################################
 # GraphvizAddNode
 #############################################################################

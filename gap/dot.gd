@@ -557,6 +557,15 @@ DeclareOperation("GraphvizSetAttr", [IsGraphvizObject, IsObject, IsObject]);
 DeclareOperation("GraphvizSetAttr", [IsGraphvizObject, IsObject]);
 #! @EndGroup
 
+#! @Arguments gv, obj
+#! @Returns the value of an attribute or <K>fail</K>.
+#! @Description
+#!    This operation returns the current value of the attribute obtained from
+#!    <C>String(obj)</C>, or <K>fail</K> if there's none.
+#! @BeginExampleSession
+#! @EndExampleSession
+DeclareOperation("GraphvizGetAttr", [IsGraphvizObject, IsObject]);
+
 #! @Arguments obj, attr
 #! @Returns a &GAPGraphviz; object
 #! @Description Removes an attribute from the object provided.
