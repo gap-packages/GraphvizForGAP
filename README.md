@@ -1,10 +1,7 @@
-## README
+[![CI](https://github.com/gap-packages/GraphvizForGAP/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/GraphvizForGAP/actions/workflows/CI.yml)
+[![Code Coverage](https://codecov.io/github/gap-packages/GraphvizForGAP/coverage.svg)](https://codecov.io/gh/gap-packages/Graphviz)
 
-### Graphviz package for GAP
-
-#### Copyright (C) 2024 by J. D. Mitchell and M. Pancer
-
-## Graphviz for GAP
+# Graphviz for GAP
 
 This package facilitates the creation and rendering of graph
 descriptions in the [DOT][] language of the [Graphviz][] graph drawing
