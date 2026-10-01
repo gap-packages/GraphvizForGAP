@@ -111,7 +111,7 @@ Render and view the result:
 
     gap> Splash(dot);
 
-![The Round Table](https://raw.github.com/gap-packages/GraphvizForGap/main/doc/img/The_Round_Table.png)
+![The Round Table](./doc/img/The_Round_Table.png)
 
 ## Issues
 
