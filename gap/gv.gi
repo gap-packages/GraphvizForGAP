@@ -13,9 +13,7 @@
 ###############################################################################
 
 BindGlobal("GV_MapType", NewType(GV_ObjectFamily,
-                                 GV_IsMap and
-                                 IsComponentObjectRep and
-                                 IsAttributeStoringRep));
+                                 GV_IsMap and IsComponentObjectRep));
 
 BindGlobal("GV_NodeType", NewType(GV_ObjectFamily,
                                     IsGraphvizNode and
