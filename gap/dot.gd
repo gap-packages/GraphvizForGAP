@@ -109,14 +109,16 @@
 #! digraph finite_state_machine {
 #!     rankdir=LR size="8,5"
 #! // terminals context
+#!  {
 #!     node [shape=doublecircle]
 #!     LR_0
 #!     LR_3
 #!     LR_4
 #!     LR_8
 #!     rankdir=LR size="8,5"
-#!
+#!  }
 #! // nodes context
+#!  {
 #!     node [shape=circle]
 #!     LR_2
 #!     LR_0 -> LR_2 [label="SS(B)"]
@@ -138,6 +140,7 @@
 #!     LR_8 -> LR_6 [label="S(b)"]
 #!     LR_8 -> LR_5 [label="S(a)"]
 #!     rankdir=LR size="8,5"
+#!  }
 #!
 #! }
 #! gap> Splash(f);
@@ -210,7 +213,7 @@ DeclareCategory("IsGraphvizEdge", IsGraphvizNodeOrEdge);
 #! See also:
 #! * <Ref Oper="GraphvizDigraph" Label="for IsObject"/>
 #! * <Ref Oper="GraphvizSetName"
-#!    Label="for IsGraphvizGraphDigraphOrContext, IsObject"/>
+#!    Label="for IsGraphvizGraph", IsObject"/>
 #! * <Ref Oper="GraphvizName" Label="for IsGraphvizObject"/>
 #!
 #! @BeginExampleSession
@@ -251,7 +254,7 @@ DeclareOperation("GraphvizGraph", []);
 #! See also:
 #! * <Ref Oper="GraphvizGraph" Label="for IsObject"/>
 #! * <Ref Oper="GraphvizSetName"
-#!    Label="for IsGraphvizGraphDigraphOrContext, IsObject"/>
+#!    Label="for IsGraphvizGraph, IsObject"/>
 #! * <Ref Oper="GraphvizName" Label="for IsGraphvizObject"/>
 #!
 #! @BeginExampleSession
@@ -637,6 +640,6 @@ DeclareGlobalFunction("ErrorIfNotValidColor");
 #!   viewer it uses. At level 2, it reports each program it runs with its
 #!   arguments. At level 3, it reports where it found each program, and
 #!   <Ref Oper="GraphvizAddEdge"
-#!        Label="for IsGraphvizGraphDigraphOrContext, IsObject, IsObject"/>
+#!        Label="for IsGraphvizGraph, IsObject, IsObject"/>
 #!   reports the nodes it adds.
 DeclareInfoClass("InfoGraphviz");
