@@ -213,7 +213,7 @@ DeclareCategory("IsGraphvizEdge", IsGraphvizNodeOrEdge);
 #! See also:
 #! * <Ref Oper="GraphvizDigraph" Label="for IsObject"/>
 #! * <Ref Oper="GraphvizSetName"
-#!    Label="for IsGraphvizGraph", IsObject"/>
+#!    Label="for IsGraphvizGraph, IsObject"/>
 #! * <Ref Oper="GraphvizName" Label="for IsGraphvizObject"/>
 #!
 #! @BeginExampleSession
