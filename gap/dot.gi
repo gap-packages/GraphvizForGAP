@@ -21,7 +21,9 @@ function(name)
                         Contexts  := rec(),
                         Nodes     := rec(),
                         Edges     := [],
-                        Attrs     := [],
+                        Attrs     := rec(graph := rec(),
+                                         edge := rec(),
+                                         node := rec()),
                         Parent    := fail,
                         Idx       := 1,
                         Counter   := 1));
@@ -41,7 +43,9 @@ function(name)
                         Contexts  := rec(),
                         Nodes     := rec(),
                         Edges     := [],
-                        Attrs     := [],
+                        Attrs     := rec(graph := rec(),
+                                         edge := rec(),
+                                         node := rec()),
                         Parent    := fail,
                         Idx       := 1,
                         Counter   := 1));
@@ -207,6 +211,45 @@ InstallMethod(GraphvizSetName, "for a graphviz (di)graph or context and string",
 # GraphvizSetAttr(s)
 #############################################################################
 
+InstallMethod(GraphvizSetAttr,
+"for a graphviz object, object, and object",
+[IsGraphvizObject, IsObject, IsObject],
+function(gv, key, val)
+  local record;
+
+  key := String(key);
+  val := String(val);
+
+  if IsGraphvizGraphDigraphOrContext(gv) then
+    # By default setting an attribute of a graph, digraph, or context sets a
+    # graph attribute
+    record := GraphvizAttrs(gv).graph;
+  else
+    record := GraphvizAttrs(gv);
+  fi;
+  record.(key) := val;
+  return gv;
+end);
+
+InstallMethod(GraphvizSetAttr,
+"for a graphviz object, string, and record",
+[IsGraphvizGraphDigraphOrContext, IsString, IsRecord],
+function(gv, key, val)
+  local possible, name;
+
+  possible := ["graph", "node", "edge"];
+  if not key in possible then
+    ErrorFormatted("invalid argument <key> = {}, when the ",
+                   "argument <val> is a record, <key> must be ",
+                   "one of {}", key, possible);
+  fi;
+  for name in RecNames(val) do
+    val.(name) := String(val.(name));
+  od;
+  GraphvizAttrs(gv).(key) := val;
+  return gv;
+end);
+
 InstallMethod(GraphvizSetAttrs, "for a graphviz object and record",
 [IsGraphvizObject, IsRecord],
 function(x, attrs)
@@ -217,78 +260,50 @@ function(x, attrs)
   return x;
 end);
 
-InstallMethod(GraphvizSetAttr,
-"for a graphviz node or edge, object, and object",
-[IsGraphvizNodeOrEdge, IsObject, IsObject],
-function(x, key, value)
-  GraphvizAttrs(x).(String(key)) := String(value);
-  return x;
-end);
-
-InstallMethod(GraphvizSetAttr,
-"for a graphviz object with subobjects, object, and object",
-[IsGraphvizGraphDigraphOrContext, IsObject, IsObject],
-function(x, name, value)
-  local attrs, string;
-
-  name := String(name);
-  GV_RemoveGraphAttrIfExists(x, name);
-  attrs := GraphvizAttrs(x);
-  value := String(value);
-  if ' ' in value then
-    # Replace with call to GV_QuoteName or whatever TODO
-    value := StringFormatted("\"{}\"", value);
+InstallMethod(GraphvizGetAttr, "for a graphviz object and object",
+[IsGraphvizObject, IsObject],
+function(gv, key)
+  local record;
+  if IsGraphvizGraphDigraphOrContext(gv) then
+    # By default setting an attribute of a graph, digraph, or context sets a
+    # graph attribute
+    record := GraphvizAttrs(gv).graph;
+  else
+    record := GraphvizAttrs(gv);
   fi;
 
-  string := StringFormatted("{}={}", name, value);
-  Add(attrs, string);
-  return x;
-end);
+  key := String(key);
 
-InstallMethod(GraphvizSetAttr, "for a graphviz (di)graph or context and object",
-[IsGraphvizGraphDigraphOrContext, IsObject],
-function(x, value)
-  local attrs, match, pred;
-
-  match := function(lookup, target)
-      local idx, pred;
-      idx := 1;
-
-      pred := function(i)
-          return i <= Length(target) and i <= Length(lookup)
-                 and lookup[i] = target[i] and lookup[i] <> '=';
-      end;
-
-      while pred(idx) do
-        idx := idx + 1;
-      od;
-      if idx > Length(lookup) or idx > Length(lookup) then
-        return false;
-      elif lookup[idx] = '=' and target[idx] = '=' then
-        return true;
-      fi;
-      return false;
-  end;
-
-  attrs := GraphvizAttrs(x);
-  x!.Attrs := Filtered(attrs, attr -> not match(attr, value));
-  attrs := GraphvizAttrs(x);
-  Add(attrs, String(value));
-  return x;
-end);
-
-InstallMethod(GraphvizGetAttr, "for a graphviz (di)graph or context and string",
-[IsGraphvizObject, IsString],
-function(x, key)
-  if not IsBound(GraphvizAttrs(x).(key)) then
+  if not IsBound(record.(key)) then
     return fail;
   fi;
-  return GraphvizAttrs(x).(key);
+  return record.(key);
 end);
 
-InstallMethod(GraphvizGetAttr, "for a graphviz (di)graph or context and string",
+InstallMethod(GraphvizRemoveAttr,
+"for a graphviz (di)graph or context and an object",
 [IsGraphvizObject, IsObject],
-{x, key} -> GraphvizGetAttr(x, String(key)));
+function(gv, key)
+  local record;
+
+  if IsGraphvizGraphDigraphOrContext(gv) then
+    # By default setting an attribute of a graph, digraph, or context sets a
+    # graph attribute
+    record := GraphvizAttrs(gv).graph;
+  else
+    record := GraphvizAttrs(gv);
+  fi;
+
+  key := String(key);
+
+  if not IsBound(record.(key)) then
+    ErrorFormatted("the 2nd argument (attribute name) \"{}\" ",
+                   "is not defined", key);
+  fi;
+
+  Unbind(record.(key));
+  return gv;
+end);
 
 #############################################################################
 # GraphvizAddNode
@@ -586,41 +601,6 @@ InstallMethod(GraphvizRemoveEdges,
 "for a graphviz (di)graph or context, object, and object",
 [IsGraphvizGraphDigraphOrContext, IsObject, IsObject],
 {gv, o1, o2} -> GraphvizRemoveEdges(gv, String(o1), String(o2)));
-
-InstallMethod(GraphvizRemoveAttr, "for a graphviz object and an object",
-[IsGraphvizObject, IsObject],
-function(obj, attr)
-  local attrs;
-  attrs := GraphvizAttrs(obj);
-  attr  := String(attr);
-
-  if not IsBound(attrs.(attr)) then
-    ErrorFormatted("the 2nd argument (attribute name) \"{}\" ",
-                   "is not set on the provided object.",
-                   attr);
-  fi;
-
-  Unbind(attrs.(attr));
-  return obj;
-end);
-
-InstallMethod(GraphvizRemoveAttr,
-"for a graphviz (di)graph or context and an object",
-[IsGraphvizGraphDigraphOrContext, IsObject],
-function(obj, attr)
-  local attrs, len;
-  attrs := GraphvizAttrs(obj);
-  len := Length(attrs);
-
-  GV_RemoveGraphAttrIfExists(obj, attr);
-  # error if no attributes were removed i.e. did not exist
-  if Length(obj!.Attrs) - len = 0 then
-    ErrorFormatted("the 2nd argument (attribute name or attribute) \"{}\" ",
-                   "is not set on the provided object.",
-                   attr);
-  fi;
-  return obj;
-end);
 
 #############################################################################
 # Stringify

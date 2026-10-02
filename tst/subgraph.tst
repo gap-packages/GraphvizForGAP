@@ -147,44 +147,44 @@ gap> g := GraphvizDigraph();;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddEdge(g, "x", "y");;
 gap> GraphvizSetAttr(s, "color", "red");;
-gap> GraphvizSetAttr(s, "node [color=red]");;
-gap> GraphvizSetAttr(s, "edge [color=red]");;
+gap> GraphvizSetAttrs(s, rec(node := rec(color := "red")));;
+gap> GraphvizSetAttrs(s, rec(edge := rec(color := "red")));;
 gap> AsString(g);
-"//dot\ndigraph  {\nsubgraph a {\n\tcolor=red node [color=red] edge [color=red\
-] \n}\n\tx\n\ty\n\tx -> y\n}\n"
+"//dot\ndigraph  {\nsubgraph a {\ngraph  [color=\"red\"]\nnode  [color=\"red\"\
+]\nedge  [color=\"red\"]\n}\n\tx\n\ty\n\tx -> y\n}\n"
 
 # Test stringifying subgraph graph
 gap> g := GraphvizGraph();;
 gap> s := GraphvizAddSubgraph(g, "a");;
 gap> GraphvizAddEdge(g, "x", "y");;
 gap> GraphvizSetAttr(s, "color", "red");;
-gap> GraphvizSetAttr(s, "node [color=red]");;
-gap> GraphvizSetAttr(s, "edge [color=red]");;
+gap> GraphvizSetAttrs(s, rec(node := rec(color := "red")));;
+gap> GraphvizSetAttrs(s, rec(edge := rec(color := "red")));;
 gap> AsString(g);
-"//dot\ngraph  {\nsubgraph a {\n\tcolor=red node [color=red] edge [color=red] \
-\n}\n\tx\n\ty\n\tx -- y\n}\n"
+"//dot\ngraph  {\nsubgraph a {\ngraph  [color=\"red\"]\nnode  [color=\"red\"]\
+\nedge  [color=\"red\"]\n}\n\tx\n\ty\n\tx -- y\n}\n"
 
 # Test stringifying subgraph context (graph)
 gap> g := GraphvizGraph();;
 gap> s := GraphvizAddContext(g, "a");;
 gap> GraphvizAddEdge(g, "x", "y");;
 gap> GraphvizSetAttr(s, "color", "red");;
-gap> GraphvizSetAttr(s, "node [color=red]");;
-gap> GraphvizSetAttr(s, "edge [color=red]");;
+gap> GraphvizSetAttrs(s, rec(node := rec(color := "red")));;
+gap> GraphvizSetAttrs(s, rec(edge := rec(color := "red")));;
 gap> AsString(g);
-"//dot\ngraph  {\n// a context \n{\n\tcolor=red node [color=red] edge [color=r\
-ed] \n}\n\tx\n\ty\n\tx -- y\n}\n"
+"//dot\ngraph  {\n// a context \n{\ngraph  [color=\"red\"]\nnode  [color=\"red\
+\"]\nedge  [color=\"red\"]\n}\n\tx\n\ty\n\tx -- y\n}\n"
 
 # Test stringifying subgraph context (digraph)
 gap> g := GraphvizDigraph();;
 gap> s := GraphvizAddContext(g, "a");;
 gap> GraphvizAddEdge(g, "x", "y");;
 gap> GraphvizSetAttr(s, "color", "red");;
-gap> GraphvizSetAttr(s, "node [color=red]");;
-gap> GraphvizSetAttr(s, "edge [color=red]");;
+gap> GraphvizSetAttrs(s, rec(node := rec(color := "red")));;
+gap> GraphvizSetAttrs(s, rec(edge := rec(color := "red")));;
 gap> AsString(g);
-"//dot\ndigraph  {\n// a context \n{\n\tcolor=red node [color=red] edge [color\
-=red] \n}\n\tx\n\ty\n\tx -> y\n}\n"
+"//dot\ndigraph  {\n// a context \n{\ngraph  [color=\"red\"]\nnode  [color=\"r\
+ed\"]\nedge  [color=\"red\"]\n}\n\tx\n\ty\n\tx -> y\n}\n"
 
 # Test stringifying subgraph w/o name
 gap> g := GraphvizDigraph();;
@@ -254,14 +254,14 @@ rec( c := <graphviz node "c"> )
 gap> g := GraphvizDigraph();;
 gap> ctx := GraphvizAddContext(g);;
 gap> GraphvizSetAttr(g, "color", "green");;
-gap> GraphvizSetAttr(g, "edge [label=testing123]");;
-gap> GraphvizSetAttr(g, "node[color=blue]");;
-gap> GraphvizSetAttr(g, "edge[color=blue]");;
-gap> GraphvizSetAttr(ctx, "node[color=red]");;
+gap> GraphvizSetAttrs(g, rec(node := rec(color := "blue"),
+> edge := rec(label := "testing123", color := "blue")));;
+gap> GraphvizSetAttrs(ctx, rec(node := rec(color := "red")));;
 gap> GraphvizAddNode(ctx, "a");;
 gap> AsString(g);
-"//dot\ndigraph  {\n\tcolor=green edge [label=testing123] node[color=blue] edg\
-e[color=blue] \n// no_name_1 context \n{\n\tnode[color=red] \n\ta\n}\n}\n"
+"//dot\ndigraph  {\ngraph  [color=\"green\"]\nnode  [color=\"blue\"]\nedge  [c\
+olor=\"blue\", label=\"testing123\"]\n// no_name_1 context \n{\nnode  [color=\
+\"red\"]\n\ta\n}\n}\n"
 
 # Test adding subgraphs with the same name
 gap> g := GraphvizDigraph();;
@@ -402,25 +402,25 @@ true
 
 # Test a context containing a subgraph
 gap> gv := GraphvizGraph("context+subgraph");;
-gap> GraphvizSetAttr(gv, "node [shape=\"box\"]");
+gap> GraphvizSetAttrs(gv, rec(node := rec(shape := "box")));
 <graphviz graph "context+subgraph" with 0 nodes and 0 edges>
 gap> legend := GraphvizAddContext(gv, "legend");
 <graphviz context "legend" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(legend, "node [shape=plaintext]");
+gap> GraphvizSetAttrs(legend, rec(node := rec(shape := "plaintext")));
 <graphviz context "legend" with 0 nodes and 0 edges>
 gap> GraphvizAddSubgraph(legend, "legend");
 <graphviz graph "legend" with 0 nodes and 0 edges>
 gap> AsString(gv);
-"//dot\ngraph context+subgraph {\n\tnode [shape=\"box\"] \n// legend context \
-\n{\n\tnode [shape=plaintext] \nsubgraph legend {\n}\n}\n}\n"
+"//dot\ngraph context+subgraph {\nnode  [shape=\"box\"]\n// legend context \n{\
+\nnode  [shape=\"plaintext\"]\nsubgraph legend {\n}\n}\n}\n"
 
 # Test a context containing a subdigraph
 gap> gv := GraphvizDigraph("context+subgraph");;
-gap> GraphvizSetAttr(gv, "node [shape=\"box\"]");
+gap> GraphvizSetAttrs(gv, rec(node := rec(shape := "box")));
 <graphviz digraph "context+subgraph" with 0 nodes and 0 edges>
 gap> legend := GraphvizAddContext(gv, "legend");
 <graphviz context "legend" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(legend, "node [shape=plaintext]");
+gap> GraphvizSetAttrs(legend, rec(node := rec(shape := "plaintext")));
 <graphviz context "legend" with 0 nodes and 0 edges>
 gap> GraphvizAddSubgraph(legend, "legend");
 <graphviz digraph "legend" with 0 nodes and 0 edges>

@@ -49,9 +49,6 @@ DeclareOperation("GV_AddEdge",
 DeclareOperation("GV_GetIdx", [IsGraphvizObject]);
 DeclareOperation("GV_ConstructHistory", [IsGraphvizGraphDigraphOrContext]);
 
-DeclareOperation("GV_RemoveGraphAttrIfExists",
-[IsGraphvizGraphDigraphOrContext, IsString]);
-
 DeclareGlobalFunction("GV_IsValidColor");
 DeclareGlobalFunction("GV_ErrorIfNotNodeColoring");
 DeclareGlobalFunction("GV_ErrorIfNotValidLabel");

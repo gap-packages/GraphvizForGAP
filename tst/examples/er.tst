@@ -19,13 +19,13 @@ true
 #
 gap> e := GraphvizGraph("ER");
 <graphviz graph "ER" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(e, "engine=\"neato\"");
+gap> GraphvizSetAttrs(e, rec(engine := "neato"));
 <graphviz graph "ER" with 0 nodes and 0 edges>
 
 #
 gap> start := GraphvizAddContext(e, "context_start");
 <graphviz context "context_start" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(start, "node[shape=\"box\"]");
+gap> GraphvizSetAttrs(start, rec(node := rec(shape := "box")));
 <graphviz context "context_start" with 0 nodes and 0 edges>
 gap> GraphvizAddNode(start, "course");
 <graphviz node "course">
@@ -37,7 +37,7 @@ gap> GraphvizAddNode(start, "student");
 #
 gap> context1 := GraphvizAddContext(e, "context1");
 <graphviz context "context1" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(context1, "node [shape=\"ellipse\"]");
+gap> GraphvizSetAttrs(context1, rec(node := rec(shape := "ellipse")));
 <graphviz context "context1" with 0 nodes and 0 edges>
 gap> GraphvizSetAttr(GraphvizAddNode(context1, "name0"), "label", "name");
 <graphviz node "name0">
@@ -55,8 +55,8 @@ gap> GraphvizAddNode(context1, "number");
 #
 gap> context2 := GraphvizAddContext(e, "context2");
 <graphviz context "context2" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(context2,
-> "node [shape=\"diamond\", style=\"filled\", color=\"lightgrey\"]");
+gap> GraphvizSetAttrs(context2,
+> rec(node := rec(shape := "diamond", style := "filled", color := "lightgrey")));
 <graphviz context "context2" with 0 nodes and 0 edges>
 gap> GraphvizAddNode(context2, "C-I");
 <graphviz node "C-I">
@@ -98,9 +98,9 @@ gap> GraphvizSetAttrs(GraphvizAddEdge(e, "course", "S-C"),
 <graphviz edge (course, S-C)>
 
 #
-gap> GraphvizSetAttr(e, "label=\"Entity Relation Diagram\ndrawn by NEATO\"");
+gap> GraphvizSetAttrs(e, rec(label := "Entity Relation Diagram\ndrawn by NEATO"));
 <graphviz graph "ER" with 12 nodes and 12 edges>
-gap> GraphvizSetAttr(e, "fontsize=\"20\"");
+gap> GraphvizSetAttrs(e, rec(fontsize := "20"));
 <graphviz graph "ER" with 12 nodes and 12 edges>
 
 #
@@ -114,17 +114,18 @@ gap> AsString(e);
 #I  invalid node name S-I using "S-I" instead
 #I  invalid node name S-C using "S-C" instead
 #I  invalid node name S-C using "S-C" instead
-"//dot\ngraph ER {\n\tengine=\"neato\" label=\"Entity Relation Diagram\ndrawn \
-by NEATO\" fontsize=\"20\" \n// context_start context \n{\n\tnode[shape=\"box\
-\"] \n\tcourse\n\tinstitute\n\tstudent\n}\n// context1 context \n{\n\tnode [sh\
-ape=\"ellipse\"] \n\tname0 [label=name]\n\tname1 [label=name]\n\tname2 [label=\
-name]\n\tcode\n\tgrade\n\tnumber\n}\n// context2 context \n{\n\tnode [shape=\"\
-diamond\", style=\"filled\", color=\"lightgrey\"] \n\t\"C-I\"\n\t\"S-C\"\n\t\"\
-S-I\"\n}\n\tname0 -- course\n\tcode -- course\n\t\"C-I\" -- course [label=n, l\
-en=1.00]\n\tinstitute -- \"C-I\" [label=1, len=1.00]\n\tname1 -- institute\n\t\
-\"S-I\" -- institute [label=1, len=1.00]\n\tstudent -- \"S-I\" [label=n, len=1\
-.00]\n\tgrade -- student\n\tname2 -- student\n\tnumber -- student\n\t\"S-C\" -\
-- student [label=m, len=1.00]\n\tcourse -- \"S-C\" [label=n, len=1.00]\n}\n"
+"//dot\ngraph ER {\ngraph  [engine=\"neato\", fontsize=\"20\", label=\"Entity \
+Relation Diagram\ndrawn by NEATO\"]\n// context_start context \n{\nnode  [shap\
+e=\"box\"]\n\tcourse\n\tinstitute\n\tstudent\n}\n// context1 context \n{\nnode\
+  [shape=\"ellipse\"]\n\tname0 [label=\"name\"]\n\tname1 [label=\"name\"]\n\tn\
+ame2 [label=\"name\"]\n\tcode\n\tgrade\n\tnumber\n}\n// context2 context \n{\n\
+node  [color=\"lightgrey\", shape=\"diamond\", style=\"filled\"]\n\t\"C-I\"\n\
+\t\"S-C\"\n\t\"S-I\"\n}\n\tname0 -- course\n\tcode -- course\n\t\"C-I\" -- cou\
+rse [label=\"n\", len=\"1.00\"]\n\tinstitute -- \"C-I\" [label=\"1\", len=\"1.\
+00\"]\n\tname1 -- institute\n\t\"S-I\" -- institute [label=\"1\", len=\"1.00\"\
+]\n\tstudent -- \"S-I\" [label=\"n\", len=\"1.00\"]\n\tgrade -- student\n\tnam\
+e2 -- student\n\tnumber -- student\n\t\"S-C\" -- student [label=\"m\", len=\"1\
+.00\"]\n\tcourse -- \"S-C\" [label=\"n\", len=\"1.00\"]\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/er.tst");

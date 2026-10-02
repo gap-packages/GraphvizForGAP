@@ -19,7 +19,7 @@ true
 #
 gap> g := GraphvizDigraph("G");
 <graphviz digraph "G" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(g, "compound=true");
+gap> GraphvizSetAttrs(g, rec(compound := "true"));
 <graphviz digraph "G" with 0 nodes and 0 edges>
 gap> cluster0 := GraphvizAddSubgraph(g, "cluster0");
 <graphviz digraph "cluster0" with 0 nodes and 0 edges>
@@ -54,10 +54,11 @@ gap> GraphvizSetAttr(e, "ltail", "cluster0");
 gap> GraphvizAddEdge(g, "d", "h");
 <graphviz edge (d, h)>
 gap> AsString(g);
-"//dot\ndigraph G {\n\tcompound=true \nsubgraph cluster0 {\n\ta\n\tb\n\ta -> b\
-\n\tc\n\ta -> c\n\td\n\tb -> d\n\tc -> d\n}\nsubgraph cluster1 {\n\te\n\tg\n\t\
-e -> g\n\tf\n\te -> f\n}\n\tb -> f [lhead=cluster1]\n\td -> e\n\tc -> g [lhead\
-=cluster1, ltail=cluster0]\n\tc -> e [ltail=cluster0]\n\th\n\td -> h\n}\n"
+"//dot\ndigraph G {\ngraph  [compound=\"true\"]\nsubgraph cluster0 {\n\ta\n\tb\
+\n\ta -> b\n\tc\n\ta -> c\n\td\n\tb -> d\n\tc -> d\n}\nsubgraph cluster1 {\n\t\
+e\n\tg\n\te -> g\n\tf\n\te -> f\n}\n\tb -> f [lhead=\"cluster1\"]\n\td -> e\n\
+\tc -> g [lhead=\"cluster1\", ltail=\"cluster0\"]\n\tc -> e [ltail=\"cluster0\
+\"]\n\th\n\td -> h\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/cluster_edge.tst");

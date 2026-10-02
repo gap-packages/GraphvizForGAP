@@ -19,7 +19,7 @@ true
 #
 gap> graph := GraphvizGraph("G");
 <graphviz graph "G" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(graph, "engine=\"sfdp\"");
+gap> GraphvizSetAttrs(graph, rec(engine := "sfdp"));
 <graphviz graph "G" with 0 nodes and 0 edges>
 
 #
@@ -48,11 +48,11 @@ gap> GraphvizAddEdge(graph, "runswap", "runmem");
 gap> GraphvizAddEdge(graph, "new", "runmem");
 <graphviz edge (new, runmem)>
 gap> AsString(graph);
-"//dot\ngraph G {\n\tengine=\"sfdp\" \n\trun\n\tintr\n\trun -- intr\n\trunbl\n\
-\tintr -- runbl\n\trunbl -- run\n\tkernel\n\trun -- kernel\n\tzombie\n\tkernel\
- -- zombie\n\tsleep\n\tkernel -- sleep\n\trunmem\n\tkernel -- runmem\n\tswap\n\
-\tsleep -- swap\n\trunswap\n\tswap -- runswap\n\tnew\n\trunswap -- new\n\truns\
-wap -- runmem\n\tnew -- runmem\n}\n"
+"//dot\ngraph G {\ngraph  [engine=\"sfdp\"]\n\trun\n\tintr\n\trun -- intr\n\tr\
+unbl\n\tintr -- runbl\n\trunbl -- run\n\tkernel\n\trun -- kernel\n\tzombie\n\t\
+kernel -- zombie\n\tsleep\n\tkernel -- sleep\n\trunmem\n\tkernel -- runmem\n\t\
+swap\n\tsleep -- swap\n\trunswap\n\tswap -- runswap\n\tnew\n\trunswap -- new\n\
+\trunswap -- runmem\n\tnew -- runmem\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/process.tst");

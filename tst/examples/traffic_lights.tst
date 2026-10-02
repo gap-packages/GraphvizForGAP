@@ -17,13 +17,13 @@ gap> LoadPackage("GraphvizForGAP");
 true
 gap> t := GraphvizDigraph("TrafficLights");
 <graphviz digraph "TrafficLights" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(t, "engine=neato");
+gap> GraphvizSetAttrs(t, rec(engine := "neato"));
 <graphviz digraph "TrafficLights" with 0 nodes and 0 edges>
 
 #
 gap> ctx1 := GraphvizAddSubgraph(t, "ctx1");
 <graphviz digraph "ctx1" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(ctx1, "node [shape=\"box\"]");
+gap> GraphvizSetAttrs(ctx1, rec(node := rec(shape := "box")));
 <graphviz digraph "ctx1" with 0 nodes and 0 edges>
 gap> for i in [2, 1] do
 >     GraphvizAddNode(ctx1, StringFormatted("gy{}", i));
@@ -34,7 +34,8 @@ gap> for i in [2, 1] do
 #
 gap> ctx2 := GraphvizAddSubgraph(t, "ctx2");
 <graphviz digraph "ctx2" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(ctx2, "node [shape=\"circle\", fixedsize=true, width=0.9]");
+gap> GraphvizSetAttrs(ctx2,
+> rec(node := rec(shape := "circle", fixedsize := "true", width := "0.9")));
 <graphviz digraph "ctx2" with 0 nodes and 0 edges>
 gap> for i in [2, 1] do
 >     GraphvizAddNode(ctx2, StringFormatted("green{}", i));
@@ -68,27 +69,25 @@ gap> for pair in [[2, 1], [1, 2]] do
 > od;
 
 #
-gap> GraphvizSetAttr(t, "overlap=\"false\"");
+gap> GraphvizSetAttrs(t, rec(overlap := "false"));
 <graphviz digraph "TrafficLights" with 14 nodes and 16 edges>
-gap> GraphvizSetAttr(t,
-> """label="PetriNet Model TrafficLights
-> Extracted from ConceptBase and laid out by Graphviz"
-> """);
+gap> GraphvizSetAttrs(t,
+> rec(label := "PetriNet Model TrafficLights\nExtracted from ConceptBase and laid out by Graphviz"));
 <graphviz digraph "TrafficLights" with 14 nodes and 16 edges>
-gap> GraphvizSetAttr(t, "fontsize=12");
+gap> GraphvizSetAttrs(t, rec(fontsize := "12"));
 <graphviz digraph "TrafficLights" with 14 nodes and 16 edges>
 
 #
 gap> AsString(t);
-"//dot\ndigraph TrafficLights {\n\tengine=neato overlap=\"false\" label=\"Petr\
-iNet Model TrafficLights\nExtracted from ConceptBase and laid out by Graphviz\
-\"\n fontsize=12 \nsubgraph ctx1 {\n\tnode [shape=\"box\"] \n\tgy2\n\tyr2\n\tr\
-g2\n\tgy1\n\tyr1\n\trg1\n}\nsubgraph ctx2 {\n\tnode [shape=\"circle\", fixedsi\
-ze=true, width=0.9] \n\tgreen2\n\tyellow2\n\tred2\n\tsafe2\n\tgreen1\n\tyellow\
-1\n\tred1\n\tsafe1\n}\n\tgy2 -> yellow2\n\trg2 -> green2\n\tyr2 -> safe1\n\tyr\
-2 -> red2\n\tsafe2 -> rg2\n\tgreen2 -> gy2\n\tyellow2 -> yr2\n\tred2 -> rg2\n\
-\tgy1 -> yellow1\n\trg1 -> green1\n\tyr1 -> safe2\n\tyr1 -> red1\n\tsafe1 -> r\
-g1\n\tgreen1 -> gy1\n\tyellow1 -> yr1\n\tred1 -> rg1\n}\n"
+"//dot\ndigraph TrafficLights {\ngraph  [engine=\"neato\", fontsize=\"12\", la\
+bel=\"PetriNet Model TrafficLights\nExtracted from ConceptBase and laid out by\
+ Graphviz\", overlap=\"false\"]\nsubgraph ctx1 {\nnode  [shape=\"box\"]\n\tgy2\
+\n\tyr2\n\trg2\n\tgy1\n\tyr1\n\trg1\n}\nsubgraph ctx2 {\nnode  [fixedsize=\"tr\
+ue\", shape=\"circle\", width=\"0.9\"]\n\tgreen2\n\tyellow2\n\tred2\n\tsafe2\n\
+\tgreen1\n\tyellow1\n\tred1\n\tsafe1\n}\n\tgy2 -> yellow2\n\trg2 -> green2\n\t\
+yr2 -> safe1\n\tyr2 -> red2\n\tsafe2 -> rg2\n\tgreen2 -> gy2\n\tyellow2 -> yr2\
+\n\tred2 -> rg2\n\tgy1 -> yellow1\n\trg1 -> green1\n\tyr1 -> safe2\n\tyr1 -> r\
+ed1\n\tsafe1 -> rg1\n\tgreen1 -> gy1\n\tyellow1 -> yr1\n\tred1 -> rg1\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/traffic_lights.tst");
