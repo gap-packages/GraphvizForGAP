@@ -304,19 +304,61 @@ DeclareOperation("GraphvizAttrs", [IsGraphvizObject]);
 
 #! @Section Getters for graphs and digraphs
 
-#! @Arguments graph
-#! @Returns a &GAPGraphviz; node object
-#! as a mapping from node ids to names.
-#! @Description Gets the nodes of the provided graphviz graph.
+#! @Arguments gv
+#! @Returns a record with components the names of nodes, and values the
+#! &GraphvizForGAP; node objects themselves.
+#! @Description
+#! This operation returns a record whose components are the names of the nodes
+#! declared within <A>gv</A> but not in its subgraphs or contexts. If
+#! <C>name</C> is variable containing the name of a node in <A>gv</A>, then
+#! <C>gv.(name)</C> is the actual &GraphvizForGAP; node object with that name
+#! belonging to <Ref Filt="IsGraphvizNode" Label="for IsGraphvizNodeOrEdge"/>.
+#!
+#! See also <Ref Oper="GraphvizNode"
+#! Label="for IsGraphvizGraphDigraphOrContext, IsObject"/>
+#! for an alternative way of accessing the
+#! nodes in &GraphvizForGAP; object, including all subgraphs and contexts.
 #! @BeginExampleSession
+#! gap> gv := GraphvizDigraph();
+#! <graphviz digraph with 0 nodes and 0 edges>
+#! gap> context := GraphvizAddContext(gv);
+#! <graphviz context "no_name_1" with 0 nodes and 0 edges>
+#! gap> GraphvizAddNode(context, "a");
+#! <graphviz node "a">
+#! gap> GraphvizNodes(gv);  # There are no nodes in gv directly, only in context
+#! rec(  )
+#! gap> GraphvizNodes(context);
+#! rec( a := <graphviz node "a"> )
 #! @EndExampleSession
 DeclareOperation("GraphvizNodes", [IsGraphvizGraphDigraphOrContext]);
 
+#! @Arguments gv, val
+#! @Returns a &GraphvizForGAP; node object or <K>fail</K>.
+#! @Description
+#! This operation returns the &GraphvizForGAP; node object in the graph,
+#! digraph, or context <A>gv</A> whose name is <C>String(<A>val</A>)</C> if any
+#! exists, and <K>fail</K> if there is no such node.
+#!
+#! Unlike <Ref Oper="GraphvizNodes"
+#! Label="for IsGraphvizGraphDigraphOrContext"/> this operation will recursively search
+#! <A>gv</A> and all of its subgraphs and contexts to try and locate a node
+#! named <C>String(<A>val</A>)</C>.
+#!
+#! @BeginExampleSession
+#! gap> gv := GraphvizDigraph();
+#! <graphviz digraph with 0 nodes and 0 edges>
+#! gap> context := GraphvizAddContext(gv);
+#! <graphviz context "no_name_1" with 0 nodes and 0 edges>
+#! gap> GraphvizAddNode(context, "a");
+#! <graphviz node "a">
+#! gap> GraphvizNode(gv, "a");
+#! <graphviz node "a">
+#! @EndExampleSession
 DeclareOperation("GraphvizNode", [IsGraphvizGraphDigraphOrContext, IsObject]);
 
 #! @Arguments graph
 #! @Returns the number of nodes in a &GAPGraphviz; object.
-
+#!
 #! @Description This operations returns the number of nodes in the
 #! &GAPGraphviz; graph, digraph, or context <A>graph</A>.
 #! @BeginExampleSession
