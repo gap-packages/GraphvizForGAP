@@ -26,17 +26,20 @@ rec( color := "blue", label := "lab" )
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttrs(g, rec(color := "red", shape := "circle"));;
 gap> GraphvizAttrs(g);
-[ "color=red", "shape=circle" ]
+rec( edge := rec(  ), graph := rec( color := "red", shape := "circle" ), 
+  node := rec(  ) )
 gap> GraphvizSetAttrs(g, rec(color := "blue", label := "test"));;
 gap> GraphvizAttrs(g);
-[ "shape=circle", "label=test", "color=blue" ]
+rec( edge := rec(  ), 
+  graph := rec( color := "blue", label := "test", shape := "circle" ), 
+  node := rec(  ) )
 
 # Test stringify
 gap> g := GraphvizGraph();;
 gap> n := GraphvizAddNode(g, "test");;
 gap> GraphvizSetAttrs(n, rec(color := "red", label := "lab"));;
 gap> AsString(g);
-"//dot\ngraph  {\n\ttest [color=red, label=lab]\n}\n"
+"//dot\ngraph  {\n\ttest [color=\"red\", label=\"lab\"]\n}\n"
 gap> GraphvizRemoveNode(g, "banana");
 Error, the 2nd argument (node name string) "banana" is not a node of the 1st a\
 rgument (a graphviz (di)graph/context)
@@ -50,8 +53,8 @@ gap> GraphvizSetAttrs(b, rec(color := "red"));;
 gap> e := GraphvizAddEdge(g, a, b);;
 gap> GraphvizSetAttrs(e, rec(color := "green"));;
 gap> AsString(g);
-"//dot\ndigraph  {\n\ta [color=blue]\n\tb [color=red]\n\ta -> b [color=green]\
-\n}\n"
+"//dot\ndigraph  {\n\ta [color=\"blue\"]\n\tb [color=\"red\"]\n\ta -> b [color\
+=\"green\"]\n}\n"
 
 # Test stringify with edge (graph)
 gap> g := GraphvizGraph();;
@@ -62,8 +65,8 @@ gap> GraphvizSetAttrs(b, rec(color := "red"));;
 gap> e := GraphvizAddEdge(g, a, b);;
 gap> GraphvizSetAttrs(e, rec(color := "green"));;
 gap> AsString(g);
-"//dot\ngraph  {\n\ta [color=blue]\n\tb [color=red]\n\ta -- b [color=green]\n}\
-\n"
+"//dot\ngraph  {\n\ta [color=\"blue\"]\n\tb [color=\"red\"]\n\ta -- b [color=\
+\"green\"]\n}\n"
 
 # Test stringify empty
 gap> g := GraphvizGraph();;
@@ -157,27 +160,27 @@ gap> GraphvizSetNodeColors(gv, ["red", "green", "blue"]);
 gap> Print(AsString(gv));
 //dot
 graph xxx {
-	1 [color=red, style=filled]
-	2 [color=green, style=filled]
-	3 [color=blue, style=filled]
+	1 [color="red", style="filled"]
+	2 [color="green", style="filled"]
+	3 [color="blue", style="filled"]
 }
 gap> GraphvizSetNodeColors(gv, ["red", "#00FF00", "blue"]);
 <graphviz graph "xxx" with 3 nodes and 0 edges>
 gap> Print(AsString(gv));
 //dot
 graph xxx {
-	1 [color=red, style=filled]
-	2 [color="#00FF00", style=filled]
-	3 [color=blue, style=filled]
+	1 [color="red", style="filled"]
+	2 [color="#00FF00", style="filled"]
+	3 [color="blue", style="filled"]
 }
 gap> GraphvizSetNodeColors(gv, ["#FF0000", "#00FF00", "#0000FF"]);
 <graphviz graph "xxx" with 3 nodes and 0 edges>
 gap> Print(AsString(gv));
 //dot
 graph xxx {
-	1 [color="#FF0000", style=filled]
-	2 [color="#00FF00", style=filled]
-	3 [color="#0000FF", style=filled]
+	1 [color="#FF0000", style="filled"]
+	2 [color="#00FF00", style="filled"]
+	3 [color="#0000FF", style="filled"]
 }
 gap> GraphvizSetNodeColors(gv, ["#FF0000", "#00FF00", "#0000FG"]);
 Error, invalid color "#0000FG" (list (string)), valid colors are RGB values or\
@@ -203,14 +206,14 @@ gap> n := GraphvizSetAttr(n, "probably not ok", 1);
 gap> Print(AsString(gv));
 //dot
 graph xxx {
-	1 ["probably not ok"=1]
+	1 [probably not ok="1"]
 }
 gap> GraphvizSetAttr(n, "label", "<<>>");
 <graphviz node "1">
 gap> Print(AsString(gv));
 //dot
 graph xxx {
-	1 [label=<<>>, "probably not ok"=1]
+	1 [label="<<>>", probably not ok="1"]
 }
 
 # Issue 68

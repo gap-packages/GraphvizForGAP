@@ -19,15 +19,15 @@ true
 #
 gap> f := GraphvizDigraph("finite_state_machine");
 <graphviz digraph "finite_state_machine" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(f, "rankdir=LR");
+gap> GraphvizSetAttrs(f, rec(rankdir := "LR"));
 <graphviz digraph "finite_state_machine" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(f, "size=\"8,5\"");
+gap> GraphvizSetAttrs(f, rec(size := "8,5"));
 <graphviz digraph "finite_state_machine" with 0 nodes and 0 edges>
 
 #
 gap> terminals := GraphvizAddContext(f, "terminals");
 <graphviz context "terminals" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(terminals, "node [shape=doublecircle]");
+gap> GraphvizSetAttrs(terminals, rec(node := rec(shape := "doublecircle")));
 <graphviz context "terminals" with 0 nodes and 0 edges>
 gap> GraphvizAddNode(terminals, "LR_0");
 <graphviz node "LR_0">
@@ -41,7 +41,7 @@ gap> GraphvizAddNode(terminals, "LR_8");
 #
 gap> nodes := GraphvizAddContext(f, "nodes");
 <graphviz context "nodes" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(nodes, "node [shape=circle]");
+gap> GraphvizSetAttrs(nodes, rec(node := rec(shape := "circle")));
 <graphviz context "nodes" with 0 nodes and 0 edges>
 gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_0", "LR_2"), "label", "\"SS(B)\"");
 <graphviz edge (LR_0, LR_2)>
@@ -74,16 +74,16 @@ gap> GraphvizSetAttr(GraphvizAddEdge(nodes, "LR_8", "LR_5"), "label", "\"S(a)\""
 
 #
 gap> AsString(f);
-"//dot\ndigraph finite_state_machine {\n\trankdir=LR size=\"8,5\" \n// termina\
-ls context \n{\n\tnode [shape=doublecircle] \n\tLR_0\n\tLR_3\n\tLR_4\n\tLR_8\n\
-}\n// nodes context \n{\n\tnode [shape=circle] \n\tLR_2\n\tLR_0 -> LR_2 [label\
-=\"SS(B)\"]\n\tLR_1\n\tLR_0 -> LR_1 [label=\"SS(S)\"]\n\tLR_1 -> LR_3 [label=\
-\"S($end)\"]\n\tLR_6\n\tLR_2 -> LR_6 [label=\"SS(b)\"]\n\tLR_5\n\tLR_2 -> LR_5\
- [label=\"SS(a)\"]\n\tLR_2 -> LR_4 [label=\"S(A)\"]\n\tLR_7\n\tLR_5 -> LR_7 [l\
-abel=\"S(b)\"]\n\tLR_5 -> LR_5 [label=\"S(a)\"]\n\tLR_6 -> LR_6 [label=\"S(b)\
-\"]\n\tLR_6 -> LR_5 [label=\"S(a)\"]\n\tLR_7 -> LR_8 [label=\"S(b)\"]\n\tLR_7 \
--> LR_5 [label=\"S(a)\"]\n\tLR_8 -> LR_6 [label=\"S(b)\"]\n\tLR_8 -> LR_5 [lab\
-el=\"S(a)\"]\n}\n}\n"
+"//dot\ndigraph finite_state_machine {\ngraph  [rankdir=\"LR\", size=\"8,5\"]\
+\n// terminals context \n{\nnode  [shape=\"doublecircle\"]\n\tLR_0\n\tLR_3\n\t\
+LR_4\n\tLR_8\n}\n// nodes context \n{\nnode  [shape=\"circle\"]\n\tLR_2\n\tLR_\
+0 -> LR_2 [label=\"SS(B)\"]\n\tLR_1\n\tLR_0 -> LR_1 [label=\"SS(S)\"]\n\tLR_1 \
+-> LR_3 [label=\"S($end)\"]\n\tLR_6\n\tLR_2 -> LR_6 [label=\"SS(b)\"]\n\tLR_5\
+\n\tLR_2 -> LR_5 [label=\"SS(a)\"]\n\tLR_2 -> LR_4 [label=\"S(A)\"]\n\tLR_7\n\
+\tLR_5 -> LR_7 [label=\"S(b)\"]\n\tLR_5 -> LR_5 [label=\"S(a)\"]\n\tLR_6 -> LR\
+_6 [label=\"S(b)\"]\n\tLR_6 -> LR_5 [label=\"S(a)\"]\n\tLR_7 -> LR_8 [label=\"\
+S(b)\"]\n\tLR_7 -> LR_5 [label=\"S(a)\"]\n\tLR_8 -> LR_6 [label=\"S(b)\"]\n\tL\
+R_8 -> LR_5 [label=\"S(a)\"]\n}\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/fsm.tst");

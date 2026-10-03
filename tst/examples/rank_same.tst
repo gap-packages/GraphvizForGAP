@@ -24,7 +24,7 @@ gap> g := GraphvizDigraph();
 #
 gap> s1 := GraphvizAddSubgraph(g);
 <graphviz digraph "no_name_1" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(s1, "rank=same");
+gap> GraphvizSetAttrs(s1, rec(rank := "same"));
 <graphviz digraph "no_name_1" with 0 nodes and 0 edges>
 gap> GraphvizAddNode(s1, "A");
 <graphviz node "A">
@@ -38,7 +38,7 @@ gap> GraphvizAddNode(g, "C");
 #
 gap> s2 := GraphvizAddSubgraph(g);
 <graphviz digraph "no_name_3" with 0 nodes and 0 edges>
-gap> GraphvizSetAttr(s2, "rank=same");
+gap> GraphvizSetAttrs(s2, rec(rank := "same"));
 <graphviz digraph "no_name_3" with 0 nodes and 0 edges>
 gap> GraphvizAddNode(s2, "B");
 <graphviz node "B">
@@ -59,9 +59,9 @@ gap> GraphvizAddEdge(g, "X", "Y");
 
 #
 gap> AsString(g);
-"//dot\ndigraph  {\nsubgraph no_name_1 {\n\trank=same \n\tA\n\tX\n}\n\tC\nsubg\
-raph no_name_3 {\n\trank=same \n\tB\n\tD\n\tY\n}\n\tA -> B\n\tA -> C\n\tC -> D\
-\n\tX -> Y\n}\n"
+"//dot\ndigraph  {\nsubgraph no_name_1 {\ngraph  [rank=\"same\"]\n\tA\n\tX\n}\
+\n\tC\nsubgraph no_name_3 {\ngraph  [rank=\"same\"]\n\tB\n\tD\n\tY\n}\n\tA -> \
+B\n\tA -> C\n\tC -> D\n\tX -> Y\n}\n"
 
 #
 gap> STOP_TEST("graphviz package: examples/rank_same.tst");

@@ -8,6 +8,8 @@
 #############################################################################
 ##
 
+# TODO remove non-public functions from gv.gd
+
 ###############################################################################
 # Family + type
 ###############################################################################
@@ -110,7 +112,9 @@ function(parent, name)
                         Contexts  := rec(),
                         Nodes     := rec(),
                         Edges     := [],
-                        Attrs     := [],
+                        Attrs     := rec(graph := rec(),
+                                         edge := rec(),
+                                         node := rec()),
                         Parent    := parent,
                         Idx       := GV_GetCounter(parent),
                         Counter   := 1));
@@ -272,39 +276,6 @@ function(x, edge)
   return x;
 end);
 
-InstallMethod(GV_RemoveGraphAttrIfExists,
-"for a graphviz graph context or digraph and a string",
-[IsGraphvizGraphDigraphOrContext, IsString],
-function(obj, attr)
-  local attrs, i, match;
-  attrs := GraphvizAttrs(obj);
-  attr  := String(attr);
-
-  # checks if they attribute names match the one being removed
-  match := function(key, str)
-    for i in [1 .. Length(key)] do
-      if i > Length(str) or key[i] <> str[i] then
-        return false;
-      fi;
-    od;
-
-    i := i + 1;
-    while i <= Length(str) do
-      if str[i] = '=' then
-        return true;
-      elif str[i] <> '\s' and str[i] <> '\t' then
-        return false;
-      fi;
-      i := i + 1;
-    od;
-
-    # attributes which are not key value or removal by value
-    return true;
-  end;
-
-  obj!.Attrs := Filtered(attrs, s -> not match(attr, s));
-end);
-
 ###############################################################################
 # Stringifying
 ###############################################################################
@@ -349,6 +320,39 @@ function(node)
   return name;
 end);
 
+BindGlobal("GV_StringifyAttrList",
+function(attrs)
+  local result, n, keys, key, val, i;
+
+  Assert(0, IsRecord(attrs));
+
+  result := "";
+  n      := Length(RecNames(attrs));
+  keys   := SSortedList(RecNames(attrs));
+
+  if n <> 0 then
+    Append(result, " [");
+    for i in [1 .. n - 1] do
+      key := keys[i];
+      val := attrs.(key);
+      if not StartsWith(val, "\"") then
+        val := StringFormatted("\"{}\"", val);
+      fi;
+
+      Append(result, StringFormatted("{}={}, ", key, val));
+    od;
+    # handle last element
+    key := keys[n];
+    val := attrs.(key);
+    if not StartsWith(val, "\"") then
+      val := StringFormatted("\"{}\"", val);
+    fi;
+    Append(result, StringFormatted("{}={}]", key, val));
+  fi;
+
+  return result;
+end);
+
 # @ Return DOT node statement line.
 InstallMethod(GV_StringifyNode, "for string and record",
 [IsGraphvizNode],
@@ -356,7 +360,7 @@ function(node)
   local name, attrs;
   name  := GV_StringifyNodeName(node);
   attrs := GraphvizAttrs(node);
-  return StringFormatted("\t{}{}\n", name, GV_StringifyNodeEdgeAttrs(attrs));
+  return StringFormatted("\t{}{}\n", name, GV_StringifyAttrList(attrs));
 end);
 
 # @ Return DOT graph edge statement line.
@@ -374,69 +378,7 @@ function(edge, edge_str)
                          head,
                          edge_str,
                          tail,
-                         GV_StringifyNodeEdgeAttrs(attrs));
-end);
-
-InstallMethod(GV_StringifyGraphAttrs,
-"for a graphviz graph",
-[IsGraphvizGraphDigraphOrContext],
-function(graph)
-  local result, attrs, kv;
-  attrs  := GraphvizAttrs(graph);
-  result := "";
-
-  if Length(attrs) <> 0 then
-    Append(result, "\t");
-    for kv in attrs do
-      Append(result,
-             StringFormatted("{} ", kv));
-    od;
-    Append(result, "\n");
-  fi;
-  return result;
-end);
-
-InstallMethod(GV_StringifyNodeEdgeAttrs, "for a record", [IsRecord],
-function(attrs)
-  local result, keys, key, val, n, i, tmp, format;
-
-  result := "";
-  n      := Length(RecNames(attrs));
-  keys   := SSortedList(RecNames(attrs));
-
-  # helper for formatting attribute kv pairs
-  format := function(format, key, val)
-    tmp := Chomp(val);
-    if "label" = key and StartsWith(tmp, "<<") and EndsWith(tmp, ">>") then
-      val := StringFormatted("{}", val);
-    else
-      if ' ' in key then
-        key := StringFormatted("\"{}\"", key);
-      fi;
-
-      if ' ' in val or '>' in val or '^' in val or '#' in val then
-        val := StringFormatted("\"{}\"", val);
-      fi;
-    fi;
-
-    return StringFormatted(format, key, val);
-  end;
-
-  if n <> 0 then
-    Append(result, " [");
-    for i in [1 .. n - 1] do
-        key := keys[i];
-        val := attrs.(key);
-
-        Append(result, format("{}={}, ", key, val));
-    od;
-    # handle last element
-    key := keys[n];
-    val := attrs.(key);
-    Append(result, format("{}={}]", key, val));
-  fi;
-
-  return result;
+                         GV_StringifyAttrList(attrs));
 end);
 
 InstallMethod(GV_GetIdx,
@@ -472,7 +414,8 @@ InstallMethod(GV_StringifyGraph,
 "for a graphviz graph and a string",
 [IsGraphvizGraphDigraphOrContext, IsBool],
 function(graph, is_subgraph)
-  local result, obj;
+  local result, record, type, obj;
+
   result := "";
 
   # get the correct head to use
@@ -493,7 +436,12 @@ function(graph, is_subgraph)
                    "expected a context, digraph or graph.");
   fi;
 
-  Append(result, GV_StringifyGraphAttrs(graph));
+  for type in ["graph", "node", "edge"] do
+    record := GraphvizAttrs(graph).(type);
+    if Length(RecNames(record)) > 0 then
+      Append(result, StringFormatted("{} {}\n", type, GV_StringifyAttrList(record)));
+    fi;
+  od;
 
   # Add child graphviz objects
   for obj in GV_ConstructHistory(graph) do

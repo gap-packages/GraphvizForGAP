@@ -358,11 +358,11 @@ DeclareOperation("GraphvizFindSubgraphRecursive",
 #! If a head and tail are provided it will only return edges
 #! between those two nodes.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> GraphvizAddEdge(gv,"a","b");;
+#! gap> gv := GraphvizGraph();;
+#! gap> GraphvizAddEdge(gv, "a", "b");;
 #! gap> GraphvizEdges(gv);
 #! [ <graphviz edge (a, b)> ]
-#! gap> GraphvizEdges(gv,"a","b");
+#! gap> GraphvizEdges(gv, "a", "b");
 #! [ <graphviz edge (a, b)> ]
 #! @EndExampleSession
 DeclareOperation("GraphvizEdges", [IsGraphvizGraphDigraphOrContext]);
@@ -375,8 +375,8 @@ DeclareOperation("GraphvizEdges",
 #! @Returns a &GAPGraphviz; node object
 #! @Description Returns the head of the provided &GAPGraphviz; edge.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> e:=GraphvizAddEdge(gv,"a","b");
+#! gap> gv := GraphvizGraph();;
+#! gap> e := GraphvizAddEdge(gv, "a", "b");
 #! <graphviz edge (a, b)>
 #! gap> GraphvizHead(e);
 #! <graphviz node "a">
@@ -387,8 +387,8 @@ DeclareOperation("GraphvizHead", [IsGraphvizEdge]);
 #! @Returns a &GAPGraphviz; node object
 #! @Description Returns the tail of the provided &GAPGraphviz; edge.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> e:=GraphvizAddEdge(gv,"a","b");
+#! gap> gv := GraphvizGraph();;
+#! gap> e := GraphvizAddEdge(gv, "a", "b");
 #! <graphviz edge (a, b)>
 #! gap> GraphvizTail(e);
 #! <graphviz node "b">
@@ -404,9 +404,9 @@ DeclareOperation("GraphvizTail", [IsGraphvizEdge]);
 #! <A>name</A> and return the <A>graph</A> with the new name.
 #!
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();
+#! gap> gv := GraphvizGraph();
 #! <graphviz graph with 0 nodes and 0 edges>
-#! gap> GraphvizSetName(gv,"newname");
+#! gap> GraphvizSetName(gv, "newname");
 #! <graphviz graph "newname" with 0 nodes and 0 edges>
 #! @EndExampleSession
 DeclareOperation("GraphvizSetName",
@@ -419,9 +419,9 @@ DeclareOperation("GraphvizSetName",
 #! What constitute a valid <A>node</A> name is found at
 #! https://graphviz.org/doc/info/lang.html
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();
+#! gap> gv := GraphvizGraph();
 #! <graphviz graph with 0 nodes and 0 edges>
-#! gap> GraphvizAddNode(gv,"a");
+#! gap> GraphvizAddNode(gv, "a");
 #! <graphviz node "a">
 #! gap> gv;
 #! <graphviz graph with 1 node and 0 edges>
@@ -442,9 +442,9 @@ DeclareOperation("GraphvizAddNode",
 #! added to the graph. If different nodes with the same name are in the graph
 #! then the operation fails.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();
+#! gap> gv := GraphvizGraph();
 #! <graphviz graph with 0 nodes and 0 edges>
-#! gap> GraphvizAddEdge(gv,"a","b");
+#! gap> GraphvizAddEdge(gv, "a", "b");
 #! <graphviz edge (a, b)>
 #! gap> gv;
 #! <graphviz graph with 2 nodes and 1 edge>
@@ -504,11 +504,11 @@ DeclareOperation("GraphvizAddComment",
 #! All edges containing the node are also removed.
 #! If no such node exists the operation fails.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> GraphvizAddNode(gv,"a");;
+#! gap> gv := GraphvizGraph();;
+#! gap> GraphvizAddNode(gv, "a");;
 #! gap> gv;
 #! <graphviz graph with 1 node and 0 edges>
-#! gap> GraphvizRemoveNode(gv,"a");
+#! gap> GraphvizRemoveNode(gv, "a");
 #! <graphviz graph with 0 nodes and 0 edges>
 #! @EndExampleSession
 DeclareOperation("GraphvizRemoveNode",
@@ -528,11 +528,11 @@ DeclareOperation("GraphvizFilterEdges",
 #! the specified names.
 #! If no edges exist between the two nodes, the operation fails.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> GraphvizAddEdge(gv,"a","b");;
+#! gap> gv := GraphvizGraph();;
+#! gap> GraphvizAddEdge(gv, "a", "b");;
 #! gap> gv;
 #! <graphviz graph with 2 nodes and 1 edge>
-#! gap> GraphvizRemoveEdges(gv,"a","b");
+#! gap> GraphvizRemoveEdges(gv, "a", "b");
 #! <graphviz graph with 2 nodes and 0 edges>
 #! @EndExampleSession
 DeclareOperation("GraphvizRemoveEdges",
@@ -541,23 +541,29 @@ DeclareOperation("GraphvizRemoveEdges",
 #! @Subsection Modifying object attributes
 #! Operations for modifying attributes.
 
-#! @BeginGroup
-#! @GroupTitle Setting Attributes
-#! @Arguments obj, attrs
-#! @Returns a &GAPGraphviz; object
+#! @Arguments gv, attrs
+#! @Returns the &GAPGraphviz; object <A>gv</A>.
 #! @Description
-#!    Updates the attributes of the object.
-#!    All current attributes remain.
-#!    If an attribute already exists and a new value is provided, the old value
-#!    will be overwritten.
+#! This operation sets the attributes of the &GAPGraphviz; object <A>gv</A> to
+#! be the record <A>attrs</A>.  No checks are performed that the components of
+#! the record <A>attrs</A> correspond to valid &DOT; attribute names.
+#! The existing attributes of <A>gv</A> (if any) are not retained.
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("GraphvizSetAttrs", [IsGraphvizObject, IsRecord]);
-#! @Arguments obj, name, value
+
+#! @Arguments gv, key, val
+#! @Returns the &GAPGraphviz; object <A>gv</A>.
+#! @Description
+#! This operation sets the attribute <A>key</A> of the &GAPGraphviz; object
+#! <A>gv</A> to have the value <A>val</A>. If either <A>key</A> or <A>val</A>
+#! is not a string, then they are converted to strings using
+#! <Ref Attr="String" BookName="ref"/>.
+#! No checks are performed that <A>key</A> is a valid attribute nor that
+#! <A>val</A> is a valid value for the attribute <A>key</A>.
+#! @BeginExampleSession
+#! @EndExampleSession
 DeclareOperation("GraphvizSetAttr", [IsGraphvizObject, IsObject, IsObject]);
-#! @Arguments obj, name
-DeclareOperation("GraphvizSetAttr", [IsGraphvizObject, IsObject]);
-#! @EndGroup
 
 #! @Arguments gv, obj
 #! @Returns the value of an attribute or <K>fail</K>.
@@ -578,6 +584,9 @@ DeclareOperation("GraphvizGetAttr", [IsGraphvizObject, IsObject]);
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareOperation("GraphvizRemoveAttr", [IsGraphvizObject, IsObject]);
+
+# TODO add GraphvizRemoveNodeAttrs, GraphvizRemoveEdgeAttrs,
+# GraphvizeRemoveAttrs, GraphvizeRemoveGraphAttrs
 
 #! @Section Outputting
 #! @Arguments graph
@@ -630,6 +639,39 @@ DeclareOperation("GraphvizSetNodeLabels",
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareGlobalFunction("ErrorIfNotValidColor");
+
+########################################################################
+# Convenience functions TODO implement
+########################################################################
+
+# DeclareOperation("GraphvizSetNodeAttr",
+#                  [IsGraphvizGraphDigraphOrContext, IsObject, IsObject]);
+# DeclareOperation("GraphvizSetNodeAttrs",
+#                  [IsGraphvizGraphDigraphOrContext, IsRecord]);
+#
+# DeclareOperation("GraphvizNodeAttrs", [IsGraphvizGraphDigraphOrContext]);
+#
+# DeclareOperation("GraphvizSetEdgeAttr",
+#                  [IsGraphvizGraphDigraphOrContext, IsObject, IsObject]);
+# DeclareOperation("GraphvizSetEdgeAttrs",
+#                  [IsGraphvizGraphDigraphOrContext, IsRecord]);
+#
+# DeclareOperation("GraphvizEdgeAttrs", [IsGraphvizGraphDigraphOrContext]);
+#
+# # NOTE: there is no GraphvizGraphAttrs for a context because graph
+# # attributes are global
+# DeclareOperation("GraphvizGraphAttrs", [IsGraphvizGraph, IsRecord]);
+# DeclareOperation("GraphvizGraphAttrs", [IsGraphvizDigraph, IsRecord]);
+#
+# DeclareOperation("GraphvizSetGraphAttr",
+# [IsGraphvizGraph, IsObject, IsObject]);
+# DeclareOperation("GraphvizSetGraphAttr",
+# [IsGraphvizDigraph, IsObject, IsObject]);
+# DeclareOperation("GraphvizSetGraphAttrs", [IsGraphvizGraph, IsRecord]);
+# DeclareOperation("GraphvizSetGraphAttrs", [IsGraphvizDigraph, IsRecord]);
+#
+# DeclareOperation("GraphvizGraphAttrs", [IsGraphvizGraph]);
+# DeclareOperation("GraphvizGraphAttrs", [IsGraphvizDigraph]);
 
 #! @Section Debugging
 #! @Description

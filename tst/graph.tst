@@ -182,14 +182,14 @@ gap> GraphvizSetName(g, "test");
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttr(g, "color", "red");;
 gap> GraphvizAttrs(g);
-[ "color=red" ]
+rec( edge := rec(  ), graph := rec( color := "red" ), node := rec(  ) )
 
 # Test stringify attributes graph
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttr(g, "color", "red");;
 gap> GraphvizSetAttr(g, "color", "blue");;
 gap> AsString(g);
-"//dot\ngraph  {\n\tcolor=blue \n}\n"
+"//dot\ngraph  {\ngraph  [color=\"blue\"]\n}\n"
 
 # # Test removing attributes from a graph TODO uncomment or delete
 # gap> g := GraphvizGraph();;
@@ -223,64 +223,64 @@ gap> GraphvizNode(g, ["a"]);
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttr(g, "label", "test");;
 gap> GraphvizAttrs(g);
-[ "label=test" ]
+rec( edge := rec(  ), graph := rec( label := "test" ), node := rec(  ) )
 gap> GraphvizSetAttr(g, 1, 2);
 <graphviz graph with 0 nodes and 0 edges>
 gap> GraphvizAttrs(g);
-[ "label=test", "1=2" ]
+rec( edge := rec(  ), graph := rec( 1 := "2", label := "test" ), 
+  node := rec(  ) )
 gap> GraphvizRemoveAttr(g, "label=tes");
-Error, the 2nd argument (attribute name or attribute) "label=tes" is not set o\
-n the provided object.
+Error, the 2nd argument (attribute name) "label=tes" is not defined
 gap> GraphvizAttrs(g);
-[ "label=test", "1=2" ]
-gap> GraphvizRemoveAttr(g, "1=2");
+rec( edge := rec(  ), graph := rec( 1 := "2", label := "test" ), 
+  node := rec(  ) )
+gap> GraphvizRemoveAttr(g, 1);
 <graphviz graph with 0 nodes and 0 edges>
 gap> GraphvizAttrs(g);
-[ "label=test" ]
+rec( edge := rec(  ), graph := rec( label := "test" ), node := rec(  ) )
 gap> GraphvizSetAttr(g, 1, 2);;
 gap> GraphvizAttrs(g);
-[ "label=test", "1=2" ]
+rec( edge := rec(  ), graph := rec( 1 := "2", label := "test" ), 
+  node := rec(  ) )
 gap> GraphvizRemoveAttr(g, "1");
 <graphviz graph with 0 nodes and 0 edges>
 gap> GraphvizAttrs(g);
-[ "label=test" ]
+rec( edge := rec(  ), graph := rec( label := "test" ), node := rec(  ) )
 gap> GraphvizRemoveAttr(g, "label");;
 gap> GraphvizAttrs(g);
-[  ]
+rec( edge := rec(  ), graph := rec(  ), node := rec(  ) )
 gap> GraphvizSetAttr(g, "label", "test");;
 gap> GraphvizAttrs(g);
-[ "label=test" ]
-gap> GraphvizRemoveAttr(g, "label=test");;
+rec( edge := rec(  ), graph := rec( label := "test" ), node := rec(  ) )
+gap> GraphvizRemoveAttr(g, "label");;
 gap> GraphvizAttrs(g);
-[  ]
+rec( edge := rec(  ), graph := rec(  ), node := rec(  ) )
 
 # Test set color (graph)
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttr(g, "color", "red");;
 gap> GraphvizAttrs(g);
-[ "color=red" ]
+rec( edge := rec(  ), graph := rec( color := "red" ), node := rec(  ) )
 
 # Test removing attributes which do not exist
 gap> g := GraphvizGraph();;
 gap> GraphvizRemoveAttr(g, "test");
-Error, the 2nd argument (attribute name or attribute) "test" is not set on the\
- provided object.
+Error, the 2nd argument (attribute name) "test" is not defined
 gap> n := GraphvizAddNode(g, "a");;
 gap> GraphvizRemoveAttr(n, "test");
-Error, the 2nd argument (attribute name) "test" is not set on the provided obj\
-ect.
+Error, the 2nd argument (attribute name) "test" is not defined
 
 # Test overwriting attributes removes them
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttr(g, "color", "red");;
 gap> GraphvizAttrs(g);
-[ "color=red" ]
+rec( edge := rec(  ), graph := rec( color := "red" ), node := rec(  ) )
 gap> GraphvizSetAttr(g, "color", "blue");;
 gap> GraphvizAttrs(g);
-[ "color=blue" ]
-gap> GraphvizSetAttr(g, "color=green");;
+rec( edge := rec(  ), graph := rec( color := "blue" ), node := rec(  ) )
+gap> GraphvizSetAttrs(g, rec(color := "green"));;
 gap> GraphvizAttrs(g);
-[ "color=green" ]
+rec( edge := rec(  ), graph := rec( color := "green" ), node := rec(  ) )
 
 #
 gap> STOP_TEST("graphviz package: graph.tst", 0);
