@@ -229,7 +229,7 @@ end);
 InstallMethod(GV_FindGraphWithNode,
 "for a graphviz graph and a node",
 [IsGraphvizGraphDigraphOrContext, IsString],
-{g, n} -> GV_GraphTreeSearch(g, v -> v[n] <> fail));
+{g, n} -> GV_GraphTreeSearch(g, v -> IsBound(GraphvizNodes(v).(n))));
 
 InstallMethod(GV_GetRoot,
 "for a graphviz graph",
@@ -251,18 +251,6 @@ function(graph)
     parent := GV_GetParent(graph);
   until parent = fail or not IsGraphvizContext(parent);
   return parent;
-end);
-
-InstallMethod(GV_FindNode,
-"for a graphviz graph and a string",
-[IsGraphvizGraphDigraphOrContext, IsString],
-function(g, n)
-  local graph;
-  graph := GV_FindGraphWithNode(g, n);
-  if graph = fail then
-    return fail;
-  fi;
-  return graph[n];
 end);
 
 InstallMethod(GV_AddNode,

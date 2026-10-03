@@ -68,9 +68,9 @@ gap> GraphvizAddEdge(graph, "b3", "end");
 <graphviz edge (b3, end)>
 
 #
-gap> GraphvizSetAttr(graph["start"], "shape", "Mdiamond");
+gap> GraphvizSetAttr(GraphvizNode(graph, "start"), "shape", "Mdiamond");
 <graphviz node "start">
-gap> GraphvizSetAttr(graph["end"], "shape", "Msquare");
+gap> GraphvizSetAttr(GraphvizNode(graph, "end"), "shape", "Msquare");
 <graphviz node "end">
 
 #

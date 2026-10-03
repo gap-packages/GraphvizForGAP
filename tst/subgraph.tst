@@ -197,27 +197,27 @@ gap> g := GraphvizDigraph();;
 gap> s1 := GraphvizAddSubgraph(g);;
 gap> GraphvizAddNode(s1, "a");;
 gap> s2 := GraphvizAddSubgraph(g);;
-gap> GV_FindNode(s2, "a");
+gap> GraphvizNode(s2, "a");
 <graphviz node "a">
-gap> GV_FindNode(s2, "b");
+gap> GraphvizNode(s2, "b");
 fail
 
 # finding a node in a child graph
 gap> g := GraphvizDigraph();;
 gap> s1 := GraphvizAddSubgraph(g);;
 gap> GraphvizAddNode(s1, "a");;
-gap> GV_FindNode(g, "a");
+gap> GraphvizNode(g, "a");
 <graphviz node "a">
-gap> GV_FindNode(g, "b");
+gap> GraphvizNode(g, "b");
 fail
 
 # finding a node in a parent graph
 gap> g := GraphvizDigraph();;
 gap> s1 := GraphvizAddSubgraph(g);;
 gap> GraphvizAddNode(g, "a");;
-gap> GV_FindNode(s1, "a");
+gap> GraphvizNode(s1, "a");
 <graphviz node "a">
-gap> GV_FindNode(s1, "b");
+gap> GraphvizNode(s1, "b");
 fail
 
 # finding a node in a parent's sibling graph
@@ -226,9 +226,9 @@ gap> s1 := GraphvizAddSubgraph(g);;
 gap> s2 := GraphvizAddSubgraph(g);;
 gap> s11 := GraphvizAddSubgraph(s1);;
 gap> GraphvizAddNode(s2, "a");;
-gap> GV_FindNode(s11, "a");
+gap> GraphvizNode(s11, "a");
 <graphviz node "a">
-gap> GV_FindNode(s11, "b");
+gap> GraphvizNode(s11, "b");
 fail
 
 # Test removing a node from a graph

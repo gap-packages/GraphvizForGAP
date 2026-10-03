@@ -111,6 +111,19 @@ x -> x!.Attrs);
 InstallMethod(GraphvizNodes, "for a graphviz (di)graph or context",
 [IsGraphvizGraphDigraphOrContext], x -> x!.Nodes);
 
+InstallMethod(GraphvizNode, "for a graphviz (di)graph or context and object",
+[IsGraphvizGraphDigraphOrContext, IsObject],
+function(gv, val)
+  local graph;
+  val := String(val);
+  graph := GV_FindGraphWithNode(gv, val);
+  if graph = fail then
+    return fail;
+  fi;
+  return GraphvizNodes(graph).(val);
+end);
+
+# FIXME the below only counts nodes in the root graph, not in its children
 InstallMethod(GraphvizNumberOfNodes, "for a graphviz (di)graph or context",
 [IsGraphvizGraphDigraphOrContext], x -> Length(RecNames(GraphvizNodes(x))));
 
@@ -163,21 +176,6 @@ InstallMethod(\=, "for graphviz edges",
 [IsGraphvizEdge, IsGraphvizEdge], IsIdenticalObj);
 
 # Accessor for graphs and digraphs
-
-# TODO Remove this, and use GraphvizAttrs(graph) instead?
-InstallMethod(\[\], "for a graphviz (di)graph or context and string",
-[IsGraphvizGraphDigraphOrContext, IsString],
-function(graph, node)
-  if IsBound(GraphvizNodes(graph).(node)) then
-    return GraphvizNodes(graph).(node);
-  fi;
-  return fail;
-end);
-
-# TODO Remove this, and use GraphvizAttrs(graph) instead?
-InstallMethod(\[\], "for a graphviz (di)graph or context and object",
-[IsGraphvizGraphDigraphOrContext, IsObject],
-{g, o} -> g[String(o)]);
 
 InstallMethod(GraphvizFindSubgraphRecursive,
 "for a graphviz (di)graph or context and a string",
@@ -298,31 +296,31 @@ InstallMethod(GraphvizGetAttr, "for a graphviz (di)graph or context and string",
 
 InstallMethod(GraphvizAddNode, "for a graphviz (di)graph or context and string",
 [IsGraphvizGraphDigraphOrContext, IsString],
-function(x, name)
+function(gv, val)
   local node;
 
   # Reuse existing node if available
-  node := GV_FindNode(x, name);
+  node := GraphvizNode(gv, val);
   if node <> fail then
-    if not IsIdenticalObj(GV_GetParent(node), x) then
+    if not IsIdenticalObj(GV_GetParent(node), gv) then
       ErrorFormatted("The 2nd argument \"{}\" is the name of a node in a ",
                      "(di)graph or context named \"{}\" which is an ",
                      "ancestor, sibling or descendant of the 1st argument ",
                      "(a graphviz (di)graph / context) named \"{}\" (",
                      "adding the node \"{}\" to the 1st argument would ",
                      "silently change the enclosing context of \"{}\")",
-                     name,
+                     val,
                      GraphvizName(GV_GetParent(node)),
-                     GraphvizName(x),
-                     name,
-                     GraphvizName(x),
-                     name);
+                     GraphvizName(gv),
+                     val,
+                     GraphvizName(gv),
+                     val);
     fi;
     return node;
   fi;
 
-  node := GV_Node(x, name);
-  GV_AddNode(x, node);
+  node := GV_Node(gv, val);
+  GV_AddNode(gv, node);
   return node;
 end);
 
@@ -382,7 +380,7 @@ InstallMethod(GraphvizAddEdge,
 function(x, head, tail)
   local head_node, tail_node;
 
-  head_node := GV_FindNode(x, head);
+  head_node := GraphvizNode(x, head);
   if head_node = fail then
     Info(InfoGraphviz, 3, "the head of the edge \"", head,
          "\" is not an existing node, adding node \"", head, "\"");
@@ -390,7 +388,7 @@ function(x, head, tail)
     GV_AddNode(x, head_node);
   fi;
 
-  tail_node := GV_FindNode(x, tail);
+  tail_node := GraphvizNode(x, tail);
   if tail_node = fail then
     Info(InfoGraphviz, 3, "the tail of the edge \"", tail,
          "\" is not an existing node, adding node \"", tail, "\"");
@@ -553,8 +551,8 @@ function(g, hn, tn)
   local lh, lt, len;
 
   # if no such nodes exist -> error out
-  lh := GV_FindNode(g, hn) = fail;
-  lt := GV_FindNode(g, tn) = fail;
+  lh := GraphvizNode(g, hn) = fail;
+  lt := GraphvizNode(g, tn) = fail;
   if lh and lt then
     ErrorFormatted("no nodes with names \"{}\" or \"{}\"", hn, tn);
   elif lh then

@@ -24,8 +24,6 @@ DeclareOperation("GV_StringifyNodeEdgeAttrs", [IsRecord]);
 DeclareOperation("GV_StringifyGraph",
                  [IsGraphvizGraphDigraphOrContext, IsBool]);
 
-DeclareOperation("GV_FindNode", [IsGraphvizGraphDigraphOrContext, IsObject]);
-
 DeclareOperation("GV_Node", [IsGraphvizGraphDigraphOrContext, IsString]);
 DeclareOperation("GV_Edge",
 [IsGraphvizGraphDigraphOrContext, IsGraphvizNode, IsGraphvizNode]);

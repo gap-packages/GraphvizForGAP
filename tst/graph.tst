@@ -8,7 +8,7 @@
 #############################################################################
 ##
 
-#@local a, ab, b, c, cd, d, g, n, n1, n2, x
+#@local a, ab, b, c, cd, d, g, n, n1, n2, x, gv
 gap> START_TEST("graphviz package: graph.tst");
 gap> LoadPackage("GraphvizForGAP", false);;
 
@@ -204,21 +204,21 @@ gap> AsString(g);
 # [  ]
 
 # Test getting a node using bracket notation
-gap> g := GraphvizGraph();;
-gap> n1 := GraphvizAddNode(g, "test");;
-gap> n2 := GraphvizAddNode(g, "abc");;
-gap> g["test"];
+gap> gv := GraphvizGraph();;
+gap> n1 := GraphvizAddNode(gv, "test");;
+gap> n2 := GraphvizAddNode(gv, "abc");;
+gap> GraphvizNode(gv, "test");
 <graphviz node "test">
-gap> g["abc"];
+gap> GraphvizNode(gv, "abc");
 <graphviz node "abc">
 
 # Test getting a node with a non-string name using bracket notation
 gap> g := GraphvizGraph();;
 gap> n1 := GraphvizAddNode(g, 1);;
 gap> n2 := GraphvizAddNode(g, ["a"]);;
-gap> g[1];
+gap> GraphvizNode(g, 1);
 <graphviz node "1">
-gap> g[["a"]];
+gap> GraphvizNode(g, ["a"]);
 <graphviz node "[ "a" ]">
 gap> g := GraphvizGraph();;
 gap> GraphvizSetAttr(g, "label", "test");;

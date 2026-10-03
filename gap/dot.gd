@@ -312,6 +312,8 @@ DeclareOperation("GraphvizAttrs", [IsGraphvizObject]);
 #! @EndExampleSession
 DeclareOperation("GraphvizNodes", [IsGraphvizGraphDigraphOrContext]);
 
+DeclareOperation("GraphvizNode", [IsGraphvizGraphDigraphOrContext, IsObject]);
+
 #! @Arguments graph
 #! @Returns the number of nodes in a &GAPGraphviz; object.
 
@@ -628,14 +630,6 @@ DeclareOperation("GraphvizSetNodeLabels",
 #! @BeginExampleSession
 #! @EndExampleSession
 DeclareGlobalFunction("ErrorIfNotValidColor");
-
-#! @Arguments graph, node_name
-#! @Returns a &GAPGraphviz; node object or fail
-#! @Description
-#!   Gets a node from a (di)graph by id.
-#! @BeginExampleSession
-#! @EndExampleSession
-DeclareOperation("\[\]", [IsGraphvizGraphDigraphOrContext, IsObject]);
 
 #! @Section Debugging
 #! @Description
