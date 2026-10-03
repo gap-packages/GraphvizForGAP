@@ -23,7 +23,7 @@
 #! <List>
 #!   <Item>
 #!     a &GAPGraphviz; graph or digraph, which is converted into a string
-#!     using <Ref Oper="AsString" Label="for IsGraphvizGraphDigraphOrContext"/>;
+#!     using <Ref Oper="AsString" Label="for IsGraphvizGraph"/>;
 #!   </Item>
 #!   <Item>
 #!     a string containing a valid <C>dot</C> or &LaTeX; document.
