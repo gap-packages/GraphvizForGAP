@@ -358,11 +358,11 @@ DeclareOperation("GraphvizFindSubgraphRecursive",
 #! If a head and tail are provided it will only return edges
 #! between those two nodes.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> GraphvizAddEdge(gv,"a","b");;
+#! gap> gv := GraphvizGraph();;
+#! gap> GraphvizAddEdge(gv, "a", "b");;
 #! gap> GraphvizEdges(gv);
 #! [ <graphviz edge (a, b)> ]
-#! gap> GraphvizEdges(gv,"a","b");
+#! gap> GraphvizEdges(gv, "a", "b");
 #! [ <graphviz edge (a, b)> ]
 #! @EndExampleSession
 DeclareOperation("GraphvizEdges", [IsGraphvizGraphDigraphOrContext]);
@@ -375,8 +375,8 @@ DeclareOperation("GraphvizEdges",
 #! @Returns a &GAPGraphviz; node object
 #! @Description Returns the head of the provided &GAPGraphviz; edge.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> e:=GraphvizAddEdge(gv,"a","b");
+#! gap> gv := GraphvizGraph();;
+#! gap> e := GraphvizAddEdge(gv, "a", "b");
 #! <graphviz edge (a, b)>
 #! gap> GraphvizHead(e);
 #! <graphviz node "a">
@@ -387,8 +387,8 @@ DeclareOperation("GraphvizHead", [IsGraphvizEdge]);
 #! @Returns a &GAPGraphviz; node object
 #! @Description Returns the tail of the provided &GAPGraphviz; edge.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> e:=GraphvizAddEdge(gv,"a","b");
+#! gap> gv := GraphvizGraph();;
+#! gap> e := GraphvizAddEdge(gv, "a", "b");
 #! <graphviz edge (a, b)>
 #! gap> GraphvizTail(e);
 #! <graphviz node "b">
@@ -404,9 +404,9 @@ DeclareOperation("GraphvizTail", [IsGraphvizEdge]);
 #! <A>name</A> and return the <A>graph</A> with the new name.
 #!
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();
+#! gap> gv := GraphvizGraph();
 #! <graphviz graph with 0 nodes and 0 edges>
-#! gap> GraphvizSetName(gv,"newname");
+#! gap> GraphvizSetName(gv, "newname");
 #! <graphviz graph "newname" with 0 nodes and 0 edges>
 #! @EndExampleSession
 DeclareOperation("GraphvizSetName",
@@ -419,9 +419,9 @@ DeclareOperation("GraphvizSetName",
 #! What constitute a valid <A>node</A> name is found at
 #! https://graphviz.org/doc/info/lang.html
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();
+#! gap> gv := GraphvizGraph();
 #! <graphviz graph with 0 nodes and 0 edges>
-#! gap> GraphvizAddNode(gv,"a");
+#! gap> GraphvizAddNode(gv, "a");
 #! <graphviz node "a">
 #! gap> gv;
 #! <graphviz graph with 1 node and 0 edges>
@@ -442,9 +442,9 @@ DeclareOperation("GraphvizAddNode",
 #! added to the graph. If different nodes with the same name are in the graph
 #! then the operation fails.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();
+#! gap> gv := GraphvizGraph();
 #! <graphviz graph with 0 nodes and 0 edges>
-#! gap> GraphvizAddEdge(gv,"a","b");
+#! gap> GraphvizAddEdge(gv, "a", "b");
 #! <graphviz edge (a, b)>
 #! gap> gv;
 #! <graphviz graph with 2 nodes and 1 edge>
@@ -504,11 +504,11 @@ DeclareOperation("GraphvizAddComment",
 #! All edges containing the node are also removed.
 #! If no such node exists the operation fails.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> GraphvizAddNode(gv,"a");;
+#! gap> gv := GraphvizGraph();;
+#! gap> GraphvizAddNode(gv, "a");;
 #! gap> gv;
 #! <graphviz graph with 1 node and 0 edges>
-#! gap> GraphvizRemoveNode(gv,"a");
+#! gap> GraphvizRemoveNode(gv, "a");
 #! <graphviz graph with 0 nodes and 0 edges>
 #! @EndExampleSession
 DeclareOperation("GraphvizRemoveNode",
@@ -528,11 +528,11 @@ DeclareOperation("GraphvizFilterEdges",
 #! the specified names.
 #! If no edges exist between the two nodes, the operation fails.
 #! @BeginExampleSession
-#! gap> gv:=GraphvizGraph();;
-#! gap> GraphvizAddEdge(gv,"a","b");;
+#! gap> gv := GraphvizGraph();;
+#! gap> GraphvizAddEdge(gv, "a", "b");;
 #! gap> gv;
 #! <graphviz graph with 2 nodes and 1 edge>
-#! gap> GraphvizRemoveEdges(gv,"a","b");
+#! gap> GraphvizRemoveEdges(gv, "a", "b");
 #! <graphviz graph with 2 nodes and 0 edges>
 #! @EndExampleSession
 DeclareOperation("GraphvizRemoveEdges",

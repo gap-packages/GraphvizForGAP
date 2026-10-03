@@ -59,45 +59,45 @@ gap> GraphvizName(e);
 # doc/_Chapter_Full_Reference.xml:272-273
 
 # doc/_Chapter_Full_Reference.xml:290-297
-gap> gv:=GraphvizGraph();;
-gap> GraphvizAddEdge(gv,"a","b");;
+gap> gv := GraphvizGraph();;
+gap> GraphvizAddEdge(gv, "a", "b");;
 gap> GraphvizEdges(gv);
 [ <graphviz edge (a, b)> ]
-gap> GraphvizEdges(gv,"a","b");
+gap> GraphvizEdges(gv, "a", "b");
 [ <graphviz edge (a, b)> ]
 
 # doc/_Chapter_Full_Reference.xml:311-317
-gap> gv:=GraphvizGraph();;
-gap> e:=GraphvizAddEdge(gv,"a","b");
+gap> gv := GraphvizGraph();;
+gap> e := GraphvizAddEdge(gv, "a", "b");
 <graphviz edge (a, b)>
 gap> GraphvizHead(e);
 <graphviz node "a">
 
 # doc/_Chapter_Full_Reference.xml:330-336
-gap> gv:=GraphvizGraph();;
-gap> e:=GraphvizAddEdge(gv,"a","b");
+gap> gv := GraphvizGraph();;
+gap> e := GraphvizAddEdge(gv, "a", "b");
 <graphviz edge (a, b)>
 gap> GraphvizTail(e);
 <graphviz node "b">
 
 # doc/_Chapter_Full_Reference.xml:358-363
-gap> gv:=GraphvizGraph();
+gap> gv := GraphvizGraph();
 <graphviz graph with 0 nodes and 0 edges>
-gap> GraphvizSetName(gv,"newname");
+gap> GraphvizSetName(gv, "newname");
 <graphviz graph "newname" with 0 nodes and 0 edges>
 
 # doc/_Chapter_Full_Reference.xml:379-386
-gap> gv:=GraphvizGraph();
+gap> gv := GraphvizGraph();
 <graphviz graph with 0 nodes and 0 edges>
-gap> GraphvizAddNode(gv,"a");
+gap> GraphvizAddNode(gv, "a");
 <graphviz node "a">
 gap> gv;
 <graphviz graph with 1 node and 0 edges>
 
 # doc/_Chapter_Full_Reference.xml:408-415
-gap> gv:=GraphvizGraph();
+gap> gv := GraphvizGraph();
 <graphviz graph with 0 nodes and 0 edges>
-gap> GraphvizAddEdge(gv,"a","b");
+gap> GraphvizAddEdge(gv, "a", "b");
 <graphviz edge (a, b)>
 gap> gv;
 <graphviz graph with 2 nodes and 1 edge>
@@ -107,21 +107,21 @@ gap> gv;
 # doc/_Chapter_Full_Reference.xml:461-462
 
 # doc/_Chapter_Full_Reference.xml:481-488
-gap> gv:=GraphvizGraph();;
-gap> GraphvizAddNode(gv,"a");;
+gap> gv := GraphvizGraph();;
+gap> GraphvizAddNode(gv, "a");;
 gap> gv;
 <graphviz graph with 1 node and 0 edges>
-gap> GraphvizRemoveNode(gv,"a");
+gap> GraphvizRemoveNode(gv, "a");
 <graphviz graph with 0 nodes and 0 edges>
 
 # doc/_Chapter_Full_Reference.xml:501-502
 
 # doc/_Chapter_Full_Reference.xml:517-524
-gap> gv:=GraphvizGraph();;
-gap> GraphvizAddEdge(gv,"a","b");;
+gap> gv := GraphvizGraph();;
+gap> GraphvizAddEdge(gv, "a", "b");;
 gap> gv;
 <graphviz graph with 2 nodes and 1 edge>
-gap> GraphvizRemoveEdges(gv,"a","b");
+gap> GraphvizRemoveEdges(gv, "a", "b");
 <graphviz graph with 2 nodes and 0 edges>
 
 # doc/_Chapter_Full_Reference.xml:547-548
