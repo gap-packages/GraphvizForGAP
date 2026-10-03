@@ -28,7 +28,7 @@ gap> n := GraphvizAddNode(GraphvizGraph(), "  ");
 
 # Test making a node with empty name fails
 gap> n := GraphvizAddNode(GraphvizGraph(), "");
-Error, the 2nd argument (string/node name) cannot be empty
+Error, the argument <val> (the name of the node being added) cannot be empty
 
 # Test whitespace in node names
 gap> n := GraphvizAddNode(GraphvizGraph(), "a  a   ");

@@ -294,10 +294,15 @@ InstallMethod(GraphvizGetAttr, "for a graphviz (di)graph or context and string",
 # GraphvizAddNode
 #############################################################################
 
-InstallMethod(GraphvizAddNode, "for a graphviz (di)graph or context and string",
-[IsGraphvizGraphDigraphOrContext, IsString],
+InstallMethod(GraphvizAddNode, "for a graphviz (di)graph or context and object",
+[IsGraphvizGraphDigraphOrContext, IsObject],
 function(gv, val)
   local node;
+  val := String(val);
+
+  if Length(val) = 0 then
+    ErrorNoReturn("the argument <val> (the name of the node being added) cannot be empty");
+  fi;
 
   # Reuse existing node if available
   node := GraphvizNode(gv, val);
@@ -331,11 +336,6 @@ function(gv, name)  # gaplint: disable=unused-func-args
                 "objects directly to Graphviz graphs or digraphs, use ",
                 "the node's name instead");
 end);
-
-InstallMethod(GraphvizAddNode,
-"for a graphviz (di)graph or context and string",
-[IsGraphvizGraphDigraphOrContext, IsObject],
-{x, name} -> GraphvizAddNode(x, String(name)));
 
 #############################################################################
 # GraphvizAddEdge

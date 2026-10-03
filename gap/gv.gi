@@ -35,9 +35,7 @@ InstallMethod(GV_Node, "for a string",
 [IsGraphvizGraphDigraphOrContext, IsString],
 function(graph, name)
   local out;
-  if Length(name) = 0 then
-    ErrorNoReturn("the 2nd argument (string/node name) cannot be empty");
-  fi;
+  Assert(0, not IsEmpty(name));
   out := Objectify(GV_NodeType,
                   rec(
                     Name   := name,
