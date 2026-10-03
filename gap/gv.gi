@@ -64,24 +64,28 @@ end);
 
 # Graph constructors
 
-InstallMethod(GV_Graph,
-"for a string and a bool",
-[IsString, IsBool],
+InstallMethod(GV_Graph, "for a string and a bool", [IsString, IsBool],
 function(name, directed)
-  return Objectify(
+  local result;
+
+  result := Objectify(
     GV_GraphType,
     rec(
+    # Note that the following aren't attributes because we require them to be
+    # mutable.
       Name      := name,
-      Directed  := directed,
-      IsContext := false,
       Subgraphs := rec(),
-      Contexts := rec(),
+      Contexts  := rec(),
       Nodes     := rec(),
       Edges     := [],
       Attrs     := [],
       Parent    := fail,
       Idx       := 1,
       Counter   := 1));
+  if directed then
+    SetFilterObj(result, IsGraphvizDigraph);
+  fi;
+  return result;
 end);
 
 InstallMethod(GV_Subgraph,
@@ -90,7 +94,7 @@ InstallMethod(GV_Subgraph,
 function(parent, name)
   local out;
 
-  out         := GV_Graph(name, parent!.Directed);
+  out         := GV_Graph(name, IsGraphvizDigraph(parent));
   out!.Parent := parent;
   out!.Idx    := GV_GetCounter(parent);
 
@@ -99,14 +103,12 @@ function(parent, name)
 end);
 
 InstallMethod(GV_Context,
-"for a string and a positive integer",
+"for a string and a string",
 [IsGraphvizGraph, IsString],
 function(parent, name)
   local out;
-
   out := GV_Subgraph(parent, name);
-  out!.IsContext := true;
-
+  SetFilterObj(out, IsGraphvizContext);
   return out;
 end);
 
@@ -240,7 +242,7 @@ function(graph)
 
   repeat
     parent := GV_GetParent(graph);
-  until parent = fail or not parent!.IsContext;
+  until parent = fail or not IsGraphvizContext(parent);
   return parent;
 end);
 
@@ -468,12 +470,12 @@ function(graph, is_subgraph)
 
   # get the correct head to use
   if is_subgraph then
-    if graph!.IsContext then
+    if IsGraphvizContext(graph) then
       Append(result, GV_StringifyContextHead(graph));
     else
       Append(result, GV_StringifySubgraphHead(graph));
     fi;
-  elif graph!.Directed then
+  elif IsGraphvizDigraph(graph) then
     Append(result, "//dot\n");
     Append(result, GV_StringifyDigraphHead(graph));
   elif IsGraphvizGraph(graph) then
@@ -493,7 +495,7 @@ function(graph, is_subgraph)
     elif IsGraphvizNode(obj) then
       Append(result, GV_StringifyNode(obj));
     elif IsGraphvizEdge(obj) then
-      if (GV_GetRoot(graph))!.Directed then
+      if (IsGraphvizDigraph(GV_GetRoot(graph))) then
         Append(result, GV_StringifyEdge(obj, "->"));
       else
         Append(result, GV_StringifyEdge(obj, "--"));

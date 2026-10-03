@@ -191,6 +191,8 @@ DeclareCategory("IsGraphvizEdge", IsGraphvizNodeOrEdge);
 #! attributes.
 #! @EndGroup
 
+DeclareCategory("IsGraphvizDigraph", IsGraphvizGraph);
+DeclareCategory("IsGraphvizContext", IsGraphvizGraph);
 #! @Section Constructors
 
 #! @BeginGroup
@@ -314,7 +316,7 @@ DeclareOperation("GraphvizAttrs", [IsGraphvizObject]);
 #! @EndExampleSession
 DeclareOperation("GraphvizNodes", [IsGraphvizGraph]);
 
-DeclareOperation("GraphvizNode", [IsGraphvizGraphDigraphOrContext, IsObject]);
+DeclareOperation("GraphvizNode", [IsGraphvizGraph, IsObject]);
 
 #! @Arguments graph
 #! @Returns the number of nodes in a &GAPGraphviz; object.

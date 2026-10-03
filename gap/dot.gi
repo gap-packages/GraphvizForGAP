@@ -53,9 +53,9 @@ function(g)
     return false;
   end);
 
-  if g!.IsContext then
+  if IsGraphvizContext(g) then
     kind := "context";
-  elif g!.Directed then
+  elif IsGraphvizDigraph(g) then
     kind := "digraph";
   else
     kind := "graph";
@@ -88,7 +88,7 @@ InstallMethod(GraphvizNodes, "for a graphviz (di)graph or context",
 [IsGraphvizGraph], x -> x!.Nodes);
 
 InstallMethod(GraphvizNode, "for a graphviz (di)graph or context and object",
-[IsGraphvizGraphDigraphOrContext, IsObject],
+[IsGraphvizGraph, IsObject],
 function(gv, val)
   local graph;
   val := String(val);
@@ -157,7 +157,7 @@ InstallMethod(GraphvizFindSubgraphRecursive,
 "for a graphviz (di)graph or context and a string",
 [IsGraphvizGraph, IsString],
 {g, s} -> GV_GraphTreeSearch(g, v -> GraphvizName(v) = s and
-                                     not v!.IsContext));
+                                     not IsGraphvizContext(v)));
 
 InstallMethod(GraphvizFindSubgraphRecursive,
 "for a graphviz (di)graph or context and a string",
@@ -535,7 +535,7 @@ function(g, hn, tn)
       local head, tail, tmp;
       head := GraphvizHead(e);
       tail := GraphvizTail(e);
-      if g!.Directed then
+      if IsGraphvizDigraph(g) then
         return tn <> GraphvizName(tail) or hn <> GraphvizName(head);
       else
         tmp := tn <> GraphvizName(tail) or hn <> GraphvizName(head);
