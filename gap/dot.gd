@@ -304,11 +304,29 @@ DeclareOperation("GraphvizAttrs", [IsGraphvizObject]);
 
 #! @Section Getters for graphs and digraphs
 
-#! @Arguments graph
-#! @Returns a &GAPGraphviz; node object
-#! as a mapping from node ids to names.
-#! @Description Gets the nodes of the provided graphviz graph.
+#! @Arguments gv
+#! @Returns a record with components the names of nodes, and values the
+#! &GraphvizForGAP; node objects themselves.
+#! @Description
+#! This operation returns a record whose components are the names of the nodes
+#! declared within <A>gv</A> but not in its subgraphs or contexts. If
+#! <C>name</C> is variable containing the name of a node in <A>gv</A>, then
+#! <C>gv.(name)</C> is the actual &GraphvizForGAP; node object with that name
+#! belonging to <Ref Filt="IsGraphvizNode"/>.
+#!
+#! See also <Ref Oper="GraphvizNode"/> for an alternative way of accessing the
+#! nodes in &GraphvizForGAP; object, including all subgraphs and contexts.
 #! @BeginExampleSession
+#! gap> gv := GraphvizDigraph();
+#! <graphviz digraph with 0 nodes and 0 edges>
+#! gap> context := GraphvizAddContext(gv);
+#! <graphviz context "no_name_1" with 0 nodes and 0 edges>
+#! gap> GraphvizAddNode(context, "a");
+#! <graphviz node "a">
+#! gap> GraphvizNodes(gv); # There are no nodes in gv directly, only in context
+#! rec(  )
+#! gap> GraphvizNodes(context);
+#! rec( a := <graphviz node "a"> )
 #! @EndExampleSession
 DeclareOperation("GraphvizNodes", [IsGraphvizGraphDigraphOrContext]);
 
