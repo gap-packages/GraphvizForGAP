@@ -177,12 +177,19 @@
 #! type of objects. These are graphs, digraphs, contexts, nodes, and
 #! edges, and combinations of these that have some common features.
 DeclareCategory("IsGraphvizObject", IsObject);
+#!
 DeclareCategory("IsGraphvizGraphDigraphOrContext", IsGraphvizObject);
+#!
 DeclareCategory("IsGraphvizGraph", IsGraphvizGraphDigraphOrContext);
+#!
 DeclareCategory("IsGraphvizDigraph", IsGraphvizGraphDigraphOrContext);
+#!
 DeclareCategory("IsGraphvizContext", IsGraphvizGraphDigraphOrContext);
+#!
 DeclareCategory("IsGraphvizNodeOrEdge", IsGraphvizObject);
+#!
 DeclareCategory("IsGraphvizNode", IsGraphvizNodeOrEdge);
+#!
 DeclareCategory("IsGraphvizEdge", IsGraphvizNodeOrEdge);
 #! The names of these categories are fairly descriptive, where a graph
 #! has undirected edges, a digraph has directed edges, and a context is
@@ -229,6 +236,7 @@ DeclareCategory("IsGraphvizEdge", IsGraphvizNodeOrEdge);
 #! ""
 #! @EndExampleSession
 DeclareOperation("GraphvizGraph", [IsObject]);
+#!
 DeclareOperation("GraphvizGraph", []);
 #! @EndGroup
 
@@ -268,6 +276,7 @@ DeclareOperation("GraphvizGraph", []);
 #! ""
 #! @EndExampleSession
 DeclareOperation("GraphvizDigraph", [IsObject]);
+#!
 DeclareOperation("GraphvizDigraph", []);
 #! @EndGroup
 
