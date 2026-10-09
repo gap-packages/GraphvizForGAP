@@ -78,7 +78,9 @@ function(name, directed)
       Contexts  := rec(),
       Nodes     := rec(),
       Edges     := [],
-      Attrs     := [],
+      Attrs     := rec(graph := rec(),
+                       edge := rec(),
+                       node := rec()),
       Parent    := fail,
       Idx       := 1,
       Counter   := 1));
